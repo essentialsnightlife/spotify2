@@ -61,7 +61,7 @@ const TopArtistsCard = ({spotifyItem, number}) => {
 }
 
 
-function TopArtists({topArtists, periods, onChange}) {
+function TopArtists({topArtists, periods, displayName, onChange}) {
     const [dropdown, setDropdown] = useState(null);
     const [selectedPeriod, setSelectedPeriod] = useState(
         periods?.find((period) => period.default)?.queryParam || ""
@@ -91,7 +91,7 @@ function TopArtists({topArtists, periods, onChange}) {
     };
 
     return (
-        <MKBox position="relative" variant="gradient" bgColor="dark" mt={6} py={2} mx={-2}>
+        <MKBox position="relative" variant="gradient" bgColor="dark" mt={6} py={4} mx={-2}>
             <MKBox
                 component="img"
                 src={bgPattern}
@@ -110,19 +110,19 @@ function TopArtists({topArtists, periods, onChange}) {
                     sx={{pt: 8, pb: 5, position: "relative", zIndex: 3}}
                 >
                     <Grid item xs={12} md={6} sx={{textAlign: "center"}}>
-                        <MKBadge
-                            badgeContent="artists"
-                            variant="contained"
-                            color="white"
-                            size="sm"
-                            container
-                            sx={{mb: 1}}
-                        />
-                        <MKTypography variant="h2" color="white" mb={1}>
+                        <MKTypography variant="h2" color="white" mb={4}>
                             Top Artists
                         </MKTypography>
+                        <MKBadge
+                            badgeContent={`For ${displayName || "you"}`}
+                            variant="contained"
+                            color="white"
+                            size="lg"
+                            container
+                            sx={{mb: 4}}
+                        />
                         <MKTypography variant="body1" color="white" fontWeight="light">
-                            These are most listened to artists, change the drop down to see for different time period
+                            Here are your most played artists, use the drop down menu to see different time periods. Popularity comes from Spotify's Popularity Index, a 0-to-100 score after ranking artists
                         </MKTypography>
                         <MKBox component="section" py={6}>
                             <Container>

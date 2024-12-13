@@ -26,10 +26,10 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
-// Landing page sections
-import Testimonials from "components/Pages/Landing/sections/Testimonials";
-import Faq from "components/Pages/Landing/sections/Faq";
-import Contact from "components/Pages/Landing/sections/Contact";
+// LoginPage page sections
+import Testimonials from "components/Pages/LoginPage/sections/Testimonials";
+import Faq from "components/Pages/LoginPage/sections/Faq";
+import Contact from "components/Pages/LoginPage/sections/Contact";
 
 // Routes
 import routes from "@/routes";
@@ -42,6 +42,11 @@ import MKButton from "components/MKButton/index";
 import SimpleReviewCard from "examples/Cards/ReviewCards/SimpleReviewCard/index.jsx";
 import TopArtists from "components/Pages/SpotifyStats/sections/TopArtists/index.jsx";
 import TopTracks from "components/Pages/SpotifyStats/sections/TopTracks/index.jsx";
+import fallbackImage from "/noImg.png";
+import MKBadge from "components/MKBadge/index.jsx";
+import React from "react";
+import Divider from "@mui/material/Divider";
+import {sessionCookie} from "*/constants";
 
 const getProfileImage = (profile) => {
     if (profile.images[0]) {
@@ -57,81 +62,45 @@ const periods = [{queryParam: "short_term", label: "Very Recent"}, {
     default: true
 }, {queryParam: "long_term", label: "Long Term"}];
 
-export function SpotifyStats({ profile, topArtists, topTracks, onChange}) {
-    const profileImage = profile && getProfileImage(profile);
+export function logout() {
+    document.cookie = `${sessionCookie}=; max-age=0; Secure;`;
+    localStorage.removeItem("verifier");
+    document.location.reload();
+}
+
+export function SpotifyStats({profile, topArtists, topTracks, onChange}) {
+    const displayName = profile?.display_name
 
     return (
         <>
             <DefaultNavbar
-                brand="Your Spotify Stats :: Free from Eds"
+                brand="Your Spotify Stats | Free from DJ Eds D1"
                 routes={[]}
                 action={{
                     type: "external",
-                    route: "https://www.creative-tim.com/product/material-kit-pro-react",
+                    onClick: () => logout(),
                     label: "disconnect",
                     color: "info",
                 }}
-                transparent
-                light
             />
-            <MKBox
-                minHeight="50vh"
-                width="100%"
-                sx={{
-                    backgroundImage: ({
-                                          functions: { linearGradient, rgba },
-                                          palette: { gradients },
-                                      }) =>
-                        `${linearGradient(
-                            rgba(gradients.dark.main, 0.5),
-                            rgba(gradients.dark.state, 0.5)
-                        )}, url(${bgImage})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    display: "grid",
-                    placeItems: "center",
-                }}
-            >
-                <Container>
-                    <Grid
-                        container
-                        item
-                        xs={12}
-                        lg={8}
-                        justifyContent="center"
-                        sx={{ mx: "auto", textAlign: "center" }}
-                    >
-                        <SimpleReviewCard
-                        image={profileImage.src}
-                        name={profile?.display_name}
-                        username="username"
-                        review="review"
-                        />
-                    </Grid>
-
-                </Container>
-            </MKBox>
             <Card
                 sx={{
                     p: 2,
-                    mx: { xs: 2, lg: 3 },
+                    mx: {xs: 2, lg: 3},
                     mt: -8,
                     mb: 4,
-                    backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+                    backgroundColor: ({palette: {white}, functions: {rgba}}) =>
                         rgba(white.main, 0.8),
                     backdropFilter: "saturate(200%) blur(30px)",
-                    boxShadow: ({ boxShadows: { xxl } }) => xxl,
+                    boxShadow: ({boxShadows: {xxl}}) => xxl,
                     overflow: "hidden",
                 }}
             >
-                <TopArtists periods={periods} topArtists={topArtists} onChange={onChange} />
-                <TopTracks periods={periods} topTracks={topTracks} onChange={onChange} />
-                <Testimonials />
-                <Faq />
-                <Contact />
+                <TopArtists periods={periods} topArtists={topArtists} displayName={displayName} onChange={onChange}/>
+                <TopTracks periods={periods} topTracks={topTracks} displayName={displayName} onChange={onChange}/>
             </Card>
-            <MKBox pt={6} px={1} mt={6}>
-                <DefaultFooter content={footerRoutes} />
+            <MKBox pt={4} px={1}>
+                <DefaultFooter content={footerRoutes}/>
             </MKBox>
         </>
     );

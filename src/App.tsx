@@ -1,20 +1,30 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   fetchProfile,
   fetchUserTopItems,
   getAccessToken,
   redirectToAuthCodeFlow,
 } from "./apis/spotify";
-import {FetchUserTopItemsParams, SpotifyItem, SpotifyTopArtistsTracksResponse, UserProfile} from "./types";
+import {
+  FetchUserTopItemsParams,
+  SpotifyItem,
+  SpotifyTopArtistsTracksResponse,
+  UserProfile,
+} from "./types";
 import { cookieMaxAge, sessionCookie } from "./constants";
-import Landing from "@/components/Pages/Landing";
-import {SpotifyStats} from "@/components/Pages/SpotifyStats";
+import LoginPage from "@/components/Pages/LoginPage";
+import { SpotifyStats } from "@/components/Pages/SpotifyStats";
+import { useNavigate } from "react-router-dom";
+import {ErrorObject} from "ajv";
 
-const accessToken = document.cookie
-  .split(";")
-  .find((row) => row.startsWith(`${sessionCookie}=`))
-  ?.split("=")[1];
+function getCookie(name: string): string | null {
+  const cookieValue = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(`${name}=`))
+    ?.split("=")[1];
+  return cookieValue || null;
+}
 
 function App() {
   const [profile, setProfile] = useState<UserProfile | null>(() => {
@@ -30,15 +40,50 @@ function App() {
     return storedTopTracks ? JSON.parse(storedTopTracks) : null;
   });
   const [failedFetch, setFailedFetch] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const params = new URLSearchParams(window.location.search);
   const authCode = params.get("code");
 
-  const periods = [{queryParam: "short_term", label: "Very Recent"}, {
-    queryParam: "medium_term",
-    label: "Recent",
-    default: true
-  }, {queryParam: "long_term", label: "Long Term"}];
+  const accessToken = getCookie(sessionCookie);
+  const navigate = useNavigate();
+
+  const fetchAndStoreToken = async () => {
+    if (!authCode || failedFetch) {
+      await redirectToAuthCodeFlow();
+      return;
+    }
+  };
+
+  const fetchAccessToken = useCallback(async () => {
+    if (!authCode) {
+      return;
+    }
+    setLoading(true);
+    await getAccessToken(authCode)
+      .then((token: string) => {
+        document.cookie = `${sessionCookie}=${token}; max-age=${cookieMaxAge}; Secure;`;
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((e: ErrorObject) => {
+        console.error("Error fetching access token:", e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [authCode]);
+
+  const periods = [
+    { queryParam: "short_term", label: "Very Recent" },
+    {
+      queryParam: "medium_term",
+      label: "Recent",
+      default: true,
+    },
+    { queryParam: "long_term", label: "Long Term" },
+  ];
 
   const handlePeriodChange = async (
     timeRange: FetchUserTopItemsParams["time_range"],
@@ -62,30 +107,6 @@ function App() {
       console.error("Error fetching top items:", e);
     }
   };
-
-  useEffect(() => {
-    const fetchAndStoreToken = async () => {
-      if (!authCode || failedFetch) {
-        await redirectToAuthCodeFlow();
-      } else {
-        try {
-          const token = await getAccessToken(authCode);
-          if (token) {
-            document.cookie = `${sessionCookie}=${token}; max-age=${cookieMaxAge}; Secure;`;
-            setFailedFetch(false);
-          }
-        } catch (err) {
-          console.error("Error fetching access token:", err);
-        }
-      }
-    };
-
-    if (!accessToken) {
-      fetchAndStoreToken();
-    } else {
-      setFailedFetch(false);
-    }
-  }, [accessToken, authCode, failedFetch]);
 
   useEffect(() => {
     if (!accessToken || (profile && topTracks && topArtists)) {
@@ -121,13 +142,27 @@ function App() {
       });
   }, [accessToken]);
 
-  if (!accessToken) {
-    return <Landing />;
+  // get access token
+  useEffect(() => {
+    fetchAccessToken();
+  }, [fetchAccessToken]);
+
+  if (loading) {
+    return <>Loading...</>;
   }
 
+  if (!accessToken) {
+    return <LoginPage onClick={fetchAndStoreToken} />;
+  }
 
   return (
-      <SpotifyStats profile={profile} topArtists={topArtists} topTracks={topTracks} periods={periods} onChange={handlePeriodChange}/>
+    <SpotifyStats
+      profile={profile}
+      topArtists={topArtists}
+      topTracks={topTracks}
+      periods={periods}
+      onChange={handlePeriodChange}
+    />
   );
 }
 

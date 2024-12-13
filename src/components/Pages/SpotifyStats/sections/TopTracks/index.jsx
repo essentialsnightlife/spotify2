@@ -60,7 +60,7 @@ const TopTracksCard = ({spotifyItem, number}) => {
 }
 
 
-function TopTracks({ topTracks, periods, onChange}) {
+function TopTracks({ topTracks, periods, displayName, onChange}) {
     const [dropdown, setDropdown] = useState(null);
     const [selectedPeriod, setSelectedPeriod] = useState(
         periods?.find((period) => period.default)?.queryParam || ""
@@ -90,7 +90,7 @@ function TopTracks({ topTracks, periods, onChange}) {
     };
 
     return (
-        <MKBox position="relative" variant="gradient" bgColor="light" mt={6} py={2} mx={-2}>
+        <MKBox position="relative" variant="gradient" bgColor="light"  py={4} mx={-2}>
             <MKBox
                 component="img"
                 src={bgPattern}
@@ -106,22 +106,22 @@ function TopTracks({ topTracks, periods, onChange}) {
                 <Grid
                     container
                     justifyContent="center"
-                    sx={{pt: 8, pb: 5, position: "relative", zIndex: 3}}
+                    sx={{pb: 5, position: "relative", zIndex: 3}}
                 >
                     <Grid item xs={12} md={6} sx={{textAlign: "center"}}>
-                        <MKBadge
-                            badgeContent="tracks"
-                            variant="contained"
-                            color="warning"
-                            size="sm"
-                            container
-                            sx={{mb: 1}}
-                        />
-                        <MKTypography variant="h2" color="warning" mb={1}>
+                        <MKTypography variant="h2" color="dark" mb={4}>
                             Top Tracks
                         </MKTypography>
-                        <MKTypography variant="body1" color="warning" fontWeight="light">
-                            Here are your top tracks based on the selected period.
+                        <MKBadge
+                            badgeContent={`For ${displayName || "you"}`}
+                            variant="contained"
+                            color="white"
+                            size="lg"
+                            container
+                            sx={{mb: 4}}
+                        />
+                        <MKTypography variant="body1" color="dark" fontWeight="light">
+                            Here are your top tracks on Spotify, again use the drop down to change the period. Popularity comes from Spotify's Popularity Index, a 0-to-100 score after ranking tracks
                         </MKTypography>
                         <MKBox component="section" py={6}>
                             <Container>
@@ -131,7 +131,7 @@ function TopTracks({ topTracks, periods, onChange}) {
                                             variant="gradient"
                                             color="info"
                                             onClick={openDropdown}
-                                            aria-controls={dropdown ? "periods-artists-menu" : undefined}
+                                            aria-controls={dropdown ? "periods-menu" : undefined}
                                             aria-haspopup="true"
                                             aria-expanded={Boolean(dropdown)}
                                         >
