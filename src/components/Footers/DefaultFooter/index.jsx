@@ -36,17 +36,18 @@ function DefaultFooter({ content }) {
         <Grid container>
           <Grid item xs={12} sx={{ textAlign: "center", mb: 1 }}>
             <MKTypography variant="h6" sx={{ mb: 3 }}>{brand.name}</MKTypography>
-            {socials.map(({ icon, link }, key) => (
+            {socials.map(({ icon, link, title }, key) => (
                 <MKTypography
-                    key={link}
+                    key={key}
                     component="a"
                     href={link}
+                    title={title}
                     target="_blank"
                     rel="noreferrer"
                     variant="h5"
                     color="dark"
                     opacity={0.8}
-                    mr={key === socials.length - 1 ? 0 : 2.5}
+                    mr={key === socials.length - 1 ? 0 : 4}
                 >
                   {icon}
                 </MKTypography>
