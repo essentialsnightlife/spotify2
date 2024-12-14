@@ -111,7 +111,7 @@ function TriviaCarousel() {
     <MKBox component="section" bgColor={"light"} py={6} position="relative">
       <Container>
         <MKTypography variant="h2" align="center" fontWeight="bold" sx={{mb: 4}} gutterBottom>
-          Actual Spotify Stats '24
+          Spotify 2024 Headlines
         </MKTypography>
         <Swiper
           onInit={(swiper) => {
