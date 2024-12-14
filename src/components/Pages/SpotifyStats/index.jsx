@@ -67,7 +67,7 @@ export function SpotifyStats({profile, topArtists, topTracks, onChange}) {
                     type: "external",
                     onClick: () => logout(),
                     label: "disconnect",
-                    color: "info",
+                    color: "primary",
                 }}
             />
             <Card

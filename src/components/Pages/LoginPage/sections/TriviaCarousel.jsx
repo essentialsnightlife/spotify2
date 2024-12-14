@@ -202,7 +202,7 @@ function TriviaCarousel() {
             <Grid key={label} item xs={6} lg={3} textAlign="center">
               <MKTypography
                 variant="body1"
-                color="success"
+                color="dark"
                 fontWeight="bold"
                 pl={2}
                 textGradient

@@ -35,7 +35,7 @@ function DefaultFooter({ content }) {
       <Container>
         <Grid container>
           <Grid item xs={12} sx={{ textAlign: "center", mb: 1 }}>
-            <MKTypography variant="h6" sx={{ mb: 3 }}>{brand.name}</MKTypography>
+            <MKTypography color="primary" variant="h6" sx={{ mb: 3 }}>{brand.name}</MKTypography>
             {socials.map(({ icon, link, title }, key) => (
                 <MKTypography
                     key={key}
@@ -45,7 +45,7 @@ function DefaultFooter({ content }) {
                     target="_blank"
                     rel="noreferrer"
                     variant="h5"
-                    color="dark"
+                    color="primary"
                     opacity={0.8}
                     mr={key === socials.length - 1 ? 0 : 4}
                 >
@@ -53,8 +53,11 @@ function DefaultFooter({ content }) {
                 </MKTypography>
             ))}
           </Grid>
+
           <Grid item xs={12} fontSize="small" sx={{ textAlign: "center", mb: 1 }}>
-            Your privacy is respected, we do not store any personal or Spotify data.
+            <MKTypography color="primary" variant="body1">
+              Your privacy is respected, we do not store any personal or Spotify data.
+            </MKTypography>
           </Grid>
           <Grid item xs={12} sx={{ textAlign: "center", my: 3 }}>
             {copyright}

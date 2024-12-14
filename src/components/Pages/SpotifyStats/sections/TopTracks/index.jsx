@@ -44,7 +44,7 @@ const TopTracksCard = ({spotifyItem, number}) => {
                 <HorizontalTeamCard
                     image={ images?.[0]?.url || album?.images?.[0]?.url }
                     name={name}
-                    position={{color: "info", label: "#" + number + " | Popularity: " + popularity}}
+                    position={{color: "primary", label: "#" + number + " | Popularity: " + popularity}}
                     description={formattedArtists}
                 />
             </MKBox>
@@ -109,7 +109,7 @@ function TopTracks({ topTracks, periods, displayName, onChange}) {
                         <MKBadge
                             badgeContent={`For ${displayName || "you"}`}
                             variant="contained"
-                            color="dark"
+                            color="primary"
                             size="lg"
                             container
                             sx={{mb: 4}}
@@ -126,7 +126,7 @@ function TopTracks({ topTracks, periods, displayName, onChange}) {
                                     <Grid item xs={12} md={6} textAlign="center">
                                         <MKButton
                                             variant="gradient"
-                                            color="info"
+                                            color="primary"
                                             onClick={openDropdown}
                                             aria-controls={dropdown ? "periods-menu" : undefined}
                                             aria-haspopup="true"

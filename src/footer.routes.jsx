@@ -30,7 +30,7 @@ const InstagramIcon = ({
     );
 };
 
-const TikTokIcon = ({color = "#344767"}) => {
+const TikTokIcon = ({color = "#9d0007"}) => {
     return (
         <svg
             fill={color}
@@ -45,7 +45,7 @@ const TikTokIcon = ({color = "#344767"}) => {
     );
 };
 
-const SoundCloudIcon = ({color = "#344767"}) => {
+const SoundCloudIcon = ({color = "#9d0007"}) => {
     return (
         <svg
             fill={color}
@@ -122,7 +122,7 @@ export default {
         },
     ],
     copyright: (
-        <MKTypography variant="button" fontWeight="regular">
+        <MKTypography color="primary" variant="button" fontWeight="regular">
             All rights reserved. Copyright &copy; {date} Spotify Stats by{" "}
             <MKTypography
                 component="a"
@@ -132,7 +132,7 @@ export default {
                 rel="noreferrer"
                 variant="button"
                 fontWeight="regular"
-                onH
+                color="primary"
             >
                 DJ Eds D1
             </MKTypography>

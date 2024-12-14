@@ -49,7 +49,7 @@ function LoginPage({onClick}) {
                     type: "external",
                     onClick: () => onClick(),
                     label: "spotify connect",
-                    color: "success",
+                    color: "primary",
                 }}
                 transparent
                 light
@@ -64,7 +64,7 @@ function LoginPage({onClick}) {
                                       }) =>
                         `${linearGradient(
                             rgba(gradients.dark.main, 0.7), // Update opacity here
-                            rgba(gradients.dark.state, 1.5) // Update opacity here
+                            "rgba(16, 12, 8, 0.85)" // Update opacity here
                         )}, url(${vibrantMusicFestival})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
@@ -97,12 +97,9 @@ function LoginPage({onClick}) {
                             tracks on Spotify for different time ranges.
                         </MKTypography>
                         <Stack direction="row" spacing={1} mt={6} mb={3}>
-                            <MKButton variant="gradient" color="success" onClick={onClick}>
+                            <MKButton variant="gradient" color="primary" onClick={onClick}>
                                 Login with Spotify
                             </MKButton>
-                            {/*<MKButton variant="text" color="white">*/}
-                            {/*  learn more*/}
-                            {/*</MKButton>*/}
                         </Stack>
                     </Grid>
                 </Container>

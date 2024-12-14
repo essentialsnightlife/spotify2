@@ -20,7 +20,7 @@ export default function VisualTeasers() {
                 <Grid container alignItems="center">
                     <Grid item sm={12} md={6} sx={{ml: {xs: 0, lg: 3}, mb: {xs: 12, md: 0}}}>
                         <MKTypography variant="h4">Discover your exclusive music insights, now!</MKTypography>
-                        <MKTypography variant="body2" color="text" mb={3}>
+                        <MKTypography variant="body1" color="text" mb={3}>
                             Easily find trends in your favourite songs over the last week or longer using insights you can't find on Spotify Wrapped.
                         </MKTypography>
                     </Grid>
@@ -33,7 +33,7 @@ export default function VisualTeasers() {
                 <Grid container alignItems="center" sx={{mt: 4}}>
                     <Grid item sm={12} md={6} sx={{ml: {xs: 0, lg: 3}, mb: {xs: 12, md: 0}}}>
                         <MKTypography variant="h4">Do you like crowd-pleasers or underground sensations?</MKTypography>
-                        <MKTypography variant="body2" color="text" mb={3}>
+                        <MKTypography variant="body1" color="text" mb={3}>
                             We source data from Spotify's Popularity Index to show you how popular or niche your favourite music is. <br />Scored from 1-100 - 100 for the most global, recognised artists and tracks && 1 for the most undiscovered.
                         </MKTypography>
                     </Grid>
