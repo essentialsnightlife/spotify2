@@ -29,7 +29,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 // Material Kit 2 PRO React examples
-import HorizontalTeamCard from "examples/Cards/TeamCards/HorizontalTeamCard";
+import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 
 // Images
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
