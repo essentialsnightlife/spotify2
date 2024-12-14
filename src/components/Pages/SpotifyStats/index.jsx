@@ -13,40 +13,27 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import React from "react";
+
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 PRO React components
 import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
 
 // Material Kit 2 PRO React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // LoginPage page sections
-import Testimonials from "components/Pages/LoginPage/sections/Testimonials";
-import Faq from "components/Pages/LoginPage/sections/Faq";
-import Contact from "components/Pages/LoginPage/sections/Contact";
+import TopArtists from "components/Pages/SpotifyStats/sections/TopArtists/index.jsx";
+import TopTracks from "components/Pages/SpotifyStats/sections/TopTracks/index.jsx";
 
 // Routes
-import routes from "@/routes";
 import footerRoutes from "@/footer.routes";
 
 // Images
-import bgImage from "assets/images/bg-rental.jpeg";
-import Stack from "@mui/material/Stack";
-import MKButton from "components/MKButton/index";
-import SimpleReviewCard from "examples/Cards/ReviewCards/SimpleReviewCard/index.jsx";
-import TopArtists from "components/Pages/SpotifyStats/sections/TopArtists/index.jsx";
-import TopTracks from "components/Pages/SpotifyStats/sections/TopTracks/index.jsx";
-import fallbackImage from "/noImg.png";
-import MKBadge from "components/MKBadge/index.jsx";
-import React from "react";
-import Divider from "@mui/material/Divider";
-import {sessionCookie} from "*/constants";
+import { sessionCookie } from "*/constants";
 
 const getProfileImage = (profile) => {
     if (profile.images[0]) {

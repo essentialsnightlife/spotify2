@@ -27,17 +27,12 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // LoginPage page sections
-import Testimonials from "components/Pages/LoginPage/sections/Testimonials";
-import Faq from "components/Pages/LoginPage/sections/Faq";
-import Contact from "components/Pages/LoginPage/sections/Contact";
 import TriviaCarousel from "components/Pages/LoginPage/sections/TriviaCarousel.jsx";
 
 // Routes
-import routes from "@/routes";
 import footerRoutes from "@/footer.routes";
 
 // Images
-import bgImage from "assets/images/bg-rental.jpeg";
 import vibrantMusicFestival from "/vibrantMusicFestival.jpg";
 import Stack from "@mui/material/Stack";
 import MKButton from "components/MKButton/index";
@@ -102,7 +97,7 @@ function LoginPage({onClick}) {
                             tracks on Spotify for different time ranges.
                         </MKTypography>
                         <Stack direction="row" spacing={1} mt={6} mb={3}>
-                            <MKButton variant="gradient" color="success">
+                            <MKButton variant="gradient" color="success" onClick={onClick}>
                                 Login with Spotify
                             </MKButton>
                             {/*<MKButton variant="text" color="white">*/}

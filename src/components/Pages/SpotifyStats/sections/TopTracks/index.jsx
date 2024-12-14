@@ -13,6 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import React, {useState} from "react";
+
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -21,24 +23,16 @@ import Icon from "@mui/material/Icon";
 // Material Kit 2 PRO React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import MKBadge from "components/MKBadge/index.jsx";
+import MKButton from "components/MKButton/index.jsx";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 // Material Kit 2 PRO React examples
 import HorizontalTeamCard from "examples/Cards/TeamCards/HorizontalTeamCard";
 
 // Images
-import bgImage from "assets/images/examples/city.jpg";
-import team1 from "assets/images/team-5.jpg";
-import team2 from "assets/images/bruce-mars.jpg";
-import team3 from "assets/images/ivana-squares.jpg";
-import team4 from "assets/images/ivana-square.jpg";
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
-import MKBadge from "components/MKBadge/index.jsx";
-import SimpleReviewCard from "examples/Cards/ReviewCards/SimpleReviewCard/index.jsx";
-import React, {useState} from "react";
-import MKDropdown from "components/MKDropdown/index.jsx";
-import MKButton from "components/MKButton/index.jsx";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 
 const TopTracksCard = ({spotifyItem, number}) => {
     const {album, artists, images, name, popularity} = spotifyItem;
@@ -115,7 +109,7 @@ function TopTracks({ topTracks, periods, displayName, onChange}) {
                         <MKBadge
                             badgeContent={`For ${displayName || "you"}`}
                             variant="contained"
-                            color="white"
+                            color="dark"
                             size="lg"
                             container
                             sx={{mb: 4}}
