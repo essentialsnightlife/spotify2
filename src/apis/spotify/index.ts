@@ -4,11 +4,10 @@ import {
   UserProfile,
 } from "../../types";
 import { appScope, redirectUri, sessionCookie } from "../../../src/constants";
+import {getCookie} from "../../helpers";
 
-const accessToken = document.cookie
-  .split(";")
-  .find((row) => row.startsWith(`${sessionCookie}=`))
-  ?.split("=")[1];
+const accessToken = getCookie(sessionCookie);
+
 export const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 export const clientSecret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 

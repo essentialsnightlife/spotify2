@@ -17,14 +17,7 @@ import LoginPage from "@/components/Pages/LoginPage";
 import { SpotifyStats } from "@/components/Pages/SpotifyStats";
 import { useNavigate } from "react-router-dom";
 import {ErrorObject} from "ajv";
-
-function getCookie(name: string): string | null {
-  const cookieValue = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(`${name}=`))
-    ?.split("=")[1];
-  return cookieValue || null;
-}
+import {getCookie} from "./helpers";
 
 function App() {
   const [profile, setProfile] = useState<UserProfile | null>(() => {
