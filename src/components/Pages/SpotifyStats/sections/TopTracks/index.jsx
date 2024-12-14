@@ -114,8 +114,11 @@ function TopTracks({ topTracks, periods, displayName, onChange}) {
                             container
                             sx={{mb: 4}}
                         />
+                        <MKTypography variant="body1" color="dark" fontWeight="light" sx={{mb: 2}}>
+                            Here are your top tracks on Spotify, again use the drop down to change the period.
+                        </MKTypography>
                         <MKTypography variant="body1" color="dark" fontWeight="light">
-                            Here are your top tracks on Spotify, again use the drop down to change the period. Popularity comes from Spotify's Popularity Index, a 0-to-100 score after ranking tracks
+                            Popularity comes from Spotify's Popularity Index, a 0-to-100 score after ranking tracks.
                         </MKTypography>
                         <MKBox component="section" py={6}>
                             <Container>

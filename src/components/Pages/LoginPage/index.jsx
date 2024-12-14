@@ -93,7 +93,7 @@ function LoginPage({onClick}) {
                             Welcome to Your Spotify Stats
                         </MKTypography>
                         <MKTypography variant="body1" color="white" mt={1}>
-                            Tell your musical stories with this free tool. You can view your top artists and most played
+                            Tell your musical stories with this free tool.<br /> You can view your top artists and most played
                             tracks on Spotify for different time ranges.
                         </MKTypography>
                         <Stack direction="row" spacing={1} mt={6} mb={3}>

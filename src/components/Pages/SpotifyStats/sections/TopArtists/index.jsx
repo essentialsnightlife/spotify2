@@ -114,8 +114,11 @@ function TopArtists({topArtists, periods, displayName, onChange}) {
                             container
                             sx={{mb: 4}}
                         />
+                        <MKTypography variant="body1" color="white" fontWeight="light" sx={{mb: 2}}>
+                            Here are your most played artists, use the drop down menu to see different time periods.
+                        </MKTypography>
                         <MKTypography variant="body1" color="white" fontWeight="light">
-                            Here are your most played artists, use the drop down menu to see different time periods. Popularity comes from Spotify's Popularity Index, a 0-to-100 score after ranking artists
+                            Popularity comes from Spotify's Popularity Index, a 0-to-100 score after ranking artists.
                         </MKTypography>
                         <MKBox component="section" py={6}>
                             <Container>
