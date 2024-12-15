@@ -489,8 +489,10 @@ function DefaultNavbar({
         py={1}
         px={{ xs: 1, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
         my={relative ? 0 : 2}
-        mx={relative ? 0 : 1}
-        width={relative ? "100%" : "calc(100% - 16px)"}
+        mx={relative ? 0 : mobileView ? 1 : 3}
+        width={
+          relative ? "100%" : `calc(100% - ${mobileView ? "16px" : "48px"})`
+        }
         borderRadius="xl"
         shadow={transparent ? "none" : "md"}
         color={light ? "white" : "dark"}
