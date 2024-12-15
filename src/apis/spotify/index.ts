@@ -6,8 +6,6 @@ import {
 import { appScope, redirectUri, sessionCookie } from "../../../src/constants";
 import { getCookie } from "../../helpers";
 
-const accessToken = getCookie(sessionCookie);
-
 export const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 export const clientSecret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 
@@ -85,7 +83,7 @@ export async function getAccessToken(authCode: string) {
 export async function fetchProfile(): Promise<UserProfile> {
   const result = await fetch("https://api.spotify.com/v1/me", {
     method: "GET",
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: { Authorization: `Bearer ${getCookie(sessionCookie)}` },
   });
 
   if (!result.ok) {

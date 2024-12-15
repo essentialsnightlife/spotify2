@@ -34,11 +34,12 @@ function App() {
   });
   const [failedFetch, setFailedFetch] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [accessToken, setAccessToken] = useState<string | null>(
+    getCookie(sessionCookie)
+  );
 
   const params = new URLSearchParams(window.location.search);
   const authCode = params.get("code");
-
-  const accessToken = getCookie(sessionCookie);
   const navigate = useNavigate();
 
   const fetchAndStoreToken = async () => {
@@ -54,9 +55,11 @@ function App() {
     }
     setLoading(true);
     await getAccessToken(authCode)
-      .then((token: string) => {
+      .then(async (token: string) => {
         if (token) {
           document.cookie = `${sessionCookie}=${token}; max-age=${cookieMaxAge}; Secure;`;
+          setAccessToken(token);
+          await fetchProfileData();
         }
       })
       .then(() => {
@@ -103,11 +106,7 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    if (!accessToken || (profile && topTracks && topArtists)) {
-      return;
-    }
-
+  const fetchProfileData = async () => {
     Promise.all([
       fetchProfile(),
       fetchUserTopItems({
@@ -135,7 +134,7 @@ function App() {
         console.error("Error fetching profile and top artists:", e);
         setFailedFetch(true);
       });
-  }, [accessToken]);
+  };
 
   // get access token
   useEffect(() => {
