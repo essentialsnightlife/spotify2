@@ -42,7 +42,7 @@ function LoginPage({ onClick }) {
     "Your Spotify Stats | Free from DJ Eds D1"
   );
 
-  // use this to change the brand text
+  // use this to change brand text
   useEffect(() => {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
