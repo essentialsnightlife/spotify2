@@ -13,41 +13,36 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import { useEffect, useState } from "react";
+
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import Stack from "@mui/material/Stack";
 
 // Material Kit 2 PRO React components
+import breakpoints from "assets/theme/base/breakpoints";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
-
-// Material Kit 2 PRO React examples
 import DefaultNavbar from "components/Navbars/DefaultNavbar";
 import DefaultFooter from "components/Footers/DefaultFooter";
-
-// LoginPage page sections
-import TriviaCarousel from "components/Pages/LoginPage/sections/TriviaCarousel.jsx";
+import MKButton from "components/MKButton/index";
+import VisualTeasers from "components/Pages/LoginPage/sections/VisualTeasers.jsx";
 
 // Routes
 import footerRoutes from "@/footer.routes";
 
 // Images
 import vibrantMusicFestival from "/vibrantMusicFestival.jpg";
-import Stack from "@mui/material/Stack";
-import MKButton from "components/MKButton/index";
-import VisualTeasers from "components/Pages/LoginPage/sections/VisualTeasers.jsx";
 
-// Material Kit 2 PRO React base styles
-import breakpoints from "assets/theme/base/breakpoints";
-import { useEffect, useState } from "react";
 
 function LoginPage({ onClick }) {
   const [brandText, setBrandText] = useState(
     "Your Spotify Stats | Free from DJ Eds D1"
   );
 
-  // use this to change the brand text
+  // use this to change brand text
   useEffect(() => {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
@@ -58,8 +53,8 @@ function LoginPage({ onClick }) {
       }
     }
 
-    /** 
-     The event listener that's calling the displayMobileNavbar function when 
+    /**
+     The event listener that's calling the displayMobileNavbar function when
      resizing the window.
     */
     window.addEventListener("resize", displayMobileNavbar);
@@ -150,7 +145,6 @@ function LoginPage({ onClick }) {
         }}
       >
         <VisualTeasers />
-        <TriviaCarousel />
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
