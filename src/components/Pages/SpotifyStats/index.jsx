@@ -36,61 +36,75 @@ import footerRoutes from "@/footer.routes";
 import { sessionCookie } from "*/constants";
 
 const getProfileImage = (profile) => {
-    if (profile.images[0]) {
-        const profileImage = new Image(200, 200);
-        profileImage.src = profile.images[0].url;
-        return profileImage;
-    }
-}
+  if (profile.images[0]) {
+    const profileImage = new Image(200, 200);
+    profileImage.src = profile.images[0].url;
+    return profileImage;
+  }
+};
 
-const periods = [{queryParam: "short_term", label: "Very Recent"}, {
+const periods = [
+  { queryParam: "short_term", label: "Very Recent" },
+  {
     queryParam: "medium_term",
     label: "Recent",
-    default: true
-}, {queryParam: "long_term", label: "Long Term"}];
+    default: true,
+  },
+  { queryParam: "long_term", label: "Long Term" },
+];
 
 export function logout() {
-    document.cookie = `${sessionCookie}=; max-age=0; Secure;`;
-    localStorage.removeItem("verifier");
-    document.location.reload();
+  document.cookie = `${sessionCookie}=; max-age=0; Secure;`;
+  localStorage.removeItem("verifier");
+  document.location.reload();
 }
 
-export function SpotifyStats({profile, topArtists, topTracks, onChange}) {
-    const displayName = profile?.display_name
+export function SpotifyStats({ profile, topArtists, topTracks, onChange }) {
+  const displayName = profile?.display_name;
 
-    return (
-        <>
-            <DefaultNavbar
-                brand="Your Spotify Stats | Free from DJ Eds D1"
-                routes={[]}
-                action={{
-                    type: "external",
-                    onClick: () => logout(),
-                    label: "disconnect",
-                    color: "primary",
-                }}
-            />
-            <Card
-                sx={{
-                    p: 2,
-                    mx: {xs: 2, lg: 3},
-                    mt: -8,
-                    mb: 4,
-                    backgroundColor: ({palette: {white}, functions: {rgba}}) =>
-                        rgba(white.main, 0.8),
-                    backdropFilter: "saturate(200%) blur(30px)",
-                    boxShadow: ({boxShadows: {xxl}}) => xxl,
-                    overflow: "hidden",
-                }}
-            >
-                <TopArtists periods={periods} topArtists={topArtists} displayName={displayName} onChange={onChange}/>
-                <TopTracks periods={periods} topTracks={topTracks} displayName={displayName} onChange={onChange}/>
-            </Card>
-            <MKBox pt={4} px={1}>
-                <DefaultFooter content={footerRoutes}/>
-            </MKBox>
-        </>
-    );
+  return (
+    <>
+      <DefaultNavbar
+        brand="Your Spotify Stats | Free from DJ Eds D1"
+        routes={[]}
+        action={{
+          type: "external",
+          onClick: () => logout(),
+          label: "disconnect",
+          color: "primary",
+        }}
+      />
+      <Card
+        sx={{
+          p: 2,
+          mx: { xs: 2, lg: 3 },
+          mt: -8,
+          mb: 4,
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+            rgba(white.main, 0.8),
+          backdropFilter: "saturate(200%) blur(30px)",
+          boxShadow: ({ boxShadows: { xxl } }) => xxl,
+          overflow: "hidden",
+        }}
+      >
+        <TopArtists
+          periods={periods}
+          topArtists={topArtists}
+          displayName={displayName}
+          onChange={onChange}
+        />
+        <TopTracks
+          periods={periods}
+          topTracks={topTracks}
+          displayName={displayName}
+          onChange={onChange}
+        />
+      </Card>
+      <MKBox pt={4} px={1}>
+        <DefaultFooter content={footerRoutes} />
+      </MKBox>
+    </>
+  );
 }
 
 export default SpotifyStats;
