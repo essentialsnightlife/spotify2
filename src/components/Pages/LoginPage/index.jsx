@@ -26,9 +26,6 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "components/Navbars/DefaultNavbar";
 import DefaultFooter from "components/Footers/DefaultFooter";
 
-// LoginPage page sections
-import TriviaCarousel from "components/Pages/LoginPage/sections/TriviaCarousel.jsx";
-
 // Routes
 import footerRoutes from "@/footer.routes";
 
@@ -118,7 +115,6 @@ function LoginPage({onClick}) {
                 }}
             >
                 <VisualTeasers/>
-                <TriviaCarousel/>
             </Card>
             <MKBox pt={6} px={1} mt={6}>
                 <DefaultFooter content={footerRoutes}/>
