@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -28,6 +28,7 @@ import DefaultFooter from "components/Footers/DefaultFooter";
 // LoginPage page sections
 import TopArtists from "components/Pages/SpotifyStats/sections/TopArtists/index.jsx";
 import TopTracks from "components/Pages/SpotifyStats/sections/TopTracks/index.jsx";
+import breakpoints from "assets/theme/base/breakpoints";
 
 // Routes
 import footerRoutes from "@/footer.routes";
@@ -61,11 +62,38 @@ export function logout() {
 
 export function SpotifyStats({ profile, topArtists, topTracks, onChange }) {
   const displayName = profile?.display_name;
+  const [brandText, setBrandText] = useState(
+    "Your Spotify Stats | Free from DJ Eds D1"
+  );
+
+  // use this to change brand text
+  useEffect(() => {
+    // A function that sets the display state for the DefaultNavbarMobile.
+    function displayMobileNavbar() {
+      if (window.innerWidth < breakpoints.values.lg) {
+        setBrandText("Your Spotify Stats");
+      } else {
+        setBrandText("Your Spotify Stats | Free from DJ Eds D1");
+      }
+    }
+
+    /**
+     The event listener that's calling the displayMobileNavbar function when
+     resizing the window.
+    */
+    window.addEventListener("resize", displayMobileNavbar);
+
+    // Call the displayMobileNavbar function to set the state with the initial value.
+    displayMobileNavbar();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", displayMobileNavbar);
+  }, []);
 
   return (
     <>
       <DefaultNavbar
-        brand="Your Spotify Stats | Free from DJ Eds D1"
+        brand={brandText}
         routes={[]}
         action={{
           type: "external",
@@ -73,7 +101,10 @@ export function SpotifyStats({ profile, topArtists, topTracks, onChange }) {
           label: "disconnect",
           color: "primary",
         }}
+        mx={3}
+        px="3rem"
       />
+
       <Card
         sx={{
           p: 2,

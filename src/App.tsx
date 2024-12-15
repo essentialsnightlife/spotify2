@@ -49,13 +49,15 @@ function App() {
   };
 
   const fetchAccessToken = useCallback(async () => {
-    if (!authCode) {
+    if (!authCode || accessToken) {
       return;
     }
     setLoading(true);
     await getAccessToken(authCode)
       .then((token: string) => {
-        document.cookie = `${sessionCookie}=${token}; max-age=${cookieMaxAge}; Secure;`;
+        if (token) {
+          document.cookie = `${sessionCookie}=${token}; max-age=${cookieMaxAge}; Secure;`;
+        }
       })
       .then(() => {
         navigate("/");

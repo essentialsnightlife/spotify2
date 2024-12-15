@@ -4,7 +4,7 @@ import {
   UserProfile,
 } from "../../types";
 import { appScope, redirectUri, sessionCookie } from "../../../src/constants";
-import {getCookie} from "../../helpers";
+import { getCookie } from "../../helpers";
 
 const accessToken = getCookie(sessionCookie);
 
@@ -112,7 +112,7 @@ export async function fetchUserTopItems({
     `https://api.spotify.com/v1/me/top/${type}?${queryParams}`,
     {
       method: "GET",
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${getCookie(sessionCookie)}` },
     }
   );
 
