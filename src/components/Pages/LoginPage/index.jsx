@@ -86,7 +86,7 @@ function LoginPage({ onClick }) {
         light
       />
       <MKBox
-        minHeight="50vh"
+        minHeight="80vh"
         width="100%"
         sx={{
           backgroundImage: ({

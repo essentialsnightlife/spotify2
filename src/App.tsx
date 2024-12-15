@@ -16,8 +16,8 @@ import { cookieMaxAge, sessionCookie } from "./constants";
 import LoginPage from "@/components/Pages/LoginPage";
 import { SpotifyStats } from "@/components/Pages/SpotifyStats";
 import { useNavigate } from "react-router-dom";
-import {ErrorObject} from "ajv";
-import {getCookie} from "./helpers";
+import { ErrorObject } from "ajv";
+import { getCookie } from "./helpers";
 
 function App() {
   const [profile, setProfile] = useState<UserProfile | null>(() => {
