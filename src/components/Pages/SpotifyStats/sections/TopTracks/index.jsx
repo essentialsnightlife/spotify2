@@ -36,7 +36,8 @@ import bgPattern from "assets/images/shapes/pattern-lines.svg";
 import { SpotifyAttribution } from "components/SpotifyAttribution";
 
 const TopTracksCard = ({spotifyItem, number}) => {
-    const {album, artists, images, name, popularity} = spotifyItem;
+    const {album, artists, images, name, popularity, external_urls} = spotifyItem;
+    const href = external_urls?.spotify;
     const formattedArtists = artists?.map((artist) => artist.name).join(", ");
 
     return (
@@ -47,6 +48,7 @@ const TopTracksCard = ({spotifyItem, number}) => {
                     name={name}
                     position={{color: "primary", label: "#" + number + " | Popularity: " + popularity}}
                     description={formattedArtists}
+                    href={href}
                 />
             </MKBox>
         </Grid>

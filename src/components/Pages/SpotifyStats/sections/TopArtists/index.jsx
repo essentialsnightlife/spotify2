@@ -35,7 +35,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { SpotifyAttribution } from "components/SpotifyAttribution";
 
 const TopArtistsCard = ({spotifyItem, number}) => {
-    const {genres, images, name, popularity} = spotifyItem;
+    const {genres, images, name, popularity, external_urls} = spotifyItem;
+    const href = external_urls?.spotify;
     const setGenreLimit = 4
     const formattedGenres = genres?.slice(0, setGenreLimit).join(", ");
 
@@ -47,6 +48,7 @@ const TopArtistsCard = ({spotifyItem, number}) => {
                     name={name}
                     position={{color: "primary", label: "#" + number + " | Popularity: " + popularity}}
                     description={formattedGenres}
+                    href={href}
                 />
             </MKBox>
         </Grid>
