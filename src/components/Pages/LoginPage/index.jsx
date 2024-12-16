@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // @mui material components
 import Container from "@mui/material/Container";
@@ -35,7 +35,7 @@ import footerRoutes from "@/footer.routes";
 
 // Images
 import vibrantMusicFestival from "/vibrantMusicFestival.jpg";
-
+import { SpotifyAttribution } from "components/SpotifyAttribution/index.jsx";
 
 function LoginPage({ onClick }) {
   const [brandText, setBrandText] = useState(
@@ -128,6 +128,9 @@ function LoginPage({ onClick }) {
                 Login with Spotify
               </MKButton>
             </Stack>
+             <Grid container direction="column" alignItems="center" mt={2}>
+                 <SpotifyAttribution />
+             </Grid>
           </Grid>
         </Container>
       </MKBox>

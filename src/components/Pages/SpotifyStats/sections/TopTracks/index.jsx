@@ -33,6 +33,7 @@ import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 
 // Images
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
+import { SpotifyAttribution } from "components/SpotifyAttribution";
 
 const TopTracksCard = ({spotifyItem, number}) => {
     const {album, artists, images, name, popularity} = spotifyItem;
@@ -158,6 +159,9 @@ function TopTracks({ topTracks, periods, displayName, onChange}) {
                             </Container>
                         </MKBox>
                     </Grid>
+                </Grid>
+                <Grid container sx={{mb: 4}}>
+                    <SpotifyAttribution color="black" logoWidth="10%" />
                 </Grid>
                 <Grid container spacing={3}>
                     {topTracks && topTracks?.map((track, index) => (

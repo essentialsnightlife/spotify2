@@ -28,10 +28,11 @@ import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 // Images
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
 import MKBadge from "components/MKBadge/index.jsx";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import MKButton from "components/MKButton/index.jsx";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { SpotifyAttribution } from "components/SpotifyAttribution";
 
 const TopArtistsCard = ({spotifyItem, number}) => {
     const {genres, images, name, popularity} = spotifyItem;
@@ -158,6 +159,9 @@ function TopArtists({topArtists, periods, displayName, onChange}) {
                             </Container>
                         </MKBox>
                     </Grid>
+                </Grid>
+                <Grid container sx={{mb: 4}}>
+                    <SpotifyAttribution logoWidth="10%" />
                 </Grid>
                 <Grid container spacing={3}>
                     {topArtists && topArtists?.map((artist, index) => (
