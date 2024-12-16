@@ -128,6 +128,7 @@ function TopTracks({ topTracks, periods, displayName, onChange}) {
                                         <MKButton
                                             variant="gradient"
                                             color="primary"
+                                            size="large"
                                             onClick={openDropdown}
                                             aria-controls={dropdown ? "periods-menu" : undefined}
                                             aria-haspopup="true"

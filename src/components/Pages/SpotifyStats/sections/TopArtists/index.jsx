@@ -128,6 +128,7 @@ function TopArtists({topArtists, periods, displayName, onChange}) {
                                         <MKButton
                                             variant="gradient"
                                             color="primary"
+                                            size="large"
                                             onClick={openDropdown}
                                             aria-controls={dropdown ? "periods-artists-menu" : undefined}
                                             aria-haspopup="true"
