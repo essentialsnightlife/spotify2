@@ -107,7 +107,7 @@ function TopArtists({topArtists, periods, displayName, onChange}) {
                 >
                     <Grid item xs={12} md={6} sx={{textAlign: "center"}}>
                         <MKTypography variant="h2" color="white" mb={4}>
-                            Top Artists
+                            Your Top Artists
                         </MKTypography>
                         <MKBadge
                             badgeContent={`For ${displayName || "you"}`}
