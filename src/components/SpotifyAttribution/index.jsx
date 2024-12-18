@@ -38,7 +38,7 @@ export const SpotifyAttribution = ({
             component="img"
             src={getSpotifyLogo(color)}
             alt={logoAlt}
-            sx={{ width: logoWidth, height: logoHeight, mt: 1 }}
+            sx={{ height: logoHeight, width: {xs: "25%", lg: logoWidth }, mt: 1 }}
         />
     </div>
 );

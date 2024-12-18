@@ -96,6 +96,8 @@ function LoginPage({ onClick }) {
           backgroundPosition: "center",
           display: "grid",
           placeItems: "center",
+          height: 'auto',
+          padding: '8rem 0'
         }}
       >
         <Container>
@@ -118,7 +120,7 @@ function LoginPage({ onClick }) {
             >
               Welcome to Your Spotify Stats
             </MKTypography>
-            <MKTypography variant="body1" color="white" mt={1}>
+            <MKTypography variant="body1" color="white" mt={2}>
               Tell your musical stories with this free tool.
               <br /> You can view your top artists and most played tracks on
               Spotify for different time ranges.

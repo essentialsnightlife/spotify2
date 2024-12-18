@@ -4,7 +4,6 @@ import MKBox from "components/MKBox/index.jsx";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import MKTypography from "components/MKTypography/index.jsx";
-import MKButton from "components/MKButton/index.jsx";
 
 import artistView from "/screenshots/SpotifyStatsArtistsDemo.png";
 import tracksView from "/screenshots/SpotifyStatsTracksDemo.png";
@@ -17,7 +16,7 @@ export default function VisualTeasers() {
           variant="h2"
           align="center"
           fontWeight="bold"
-          sx={{ mb: 6 }}
+          sx={{ mb: 4 }}
           gutterBottom
         >
           Explore the Soundtrack of Your Life
@@ -28,14 +27,14 @@ export default function VisualTeasers() {
             sm={12}
             md={6}
             align="center"
-            sx={{ ml: { xs: 0, lg: 3 }, mb: { xs: 12, md: 0 } }}
+            sx={{ ml: { xs: 0, lg: 3 }, mb: { xs: 4, md: 0 } }}
           >
-            <MKTypography variant="h4">
+            <MKTypography variant="h4" sx={{py: 2}}>
               Discover your exclusive music insights, now!
             </MKTypography>
             <MKTypography variant="body1" color="text" mb={3}>
-              Easily find trends in your favourite songs over the last week or
-              longer using insights you can't find on Spotify Wrapped.
+              Easily find trends and explore your favourite sounds over the last week or
+              longer, using insights you couldn't find on Spotify Wrapped.
             </MKTypography>
           </Grid>
           <Grid item xs={12} md={5} sx={{ ml: "auto" }}>
@@ -54,17 +53,15 @@ export default function VisualTeasers() {
             item
             sm={12}
             md={6}
-            sx={{ ml: { xs: 0, lg: 3 }, mb: { xs: 12, md: 0 } }}
+            sx={{ ml: { xs: 0, lg: 3 }, mb: { xs: 4, md: 0 } }}
             align="center"
           >
-            <MKTypography variant="h4">
+            <MKTypography variant="h4" sx={{py: 2}}>
               Do you like crowd-pleasers or underground sensations?
             </MKTypography>
             <MKTypography variant="body1" color="text" mb={3}>
               We source data from Spotify's Popularity Index to show you how
-              popular or niche your favourite music is. <br />
-              Scored from 1-100 - 100 for the most global, recognised artists
-              and tracks && 1 for the most undiscovered.
+              popular or niche your favourite music is.
             </MKTypography>
           </Grid>
           <Grid item xs={12} md={5} sx={{ ml: "auto" }}>
