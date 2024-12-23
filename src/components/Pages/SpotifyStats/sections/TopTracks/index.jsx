@@ -164,7 +164,7 @@ function TopTracks({ topTracks, periods, displayName, onChange}) {
                     </Grid>
                 </Grid>
                 <Grid container sx={{mb: 4}}>
-                    <SpotifyAttribution color="black" logoWidth="10%" />
+                    <SpotifyAttribution color="dark" logoWidth="10%" />
                 </Grid>
                 <Grid container spacing={3}>
                     {topTracks && topTracks?.map((track, index) => (

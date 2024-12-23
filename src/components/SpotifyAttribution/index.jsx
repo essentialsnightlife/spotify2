@@ -13,7 +13,7 @@ const getSpotifyLogo = (color) => {
     switch (color) {
         case "white":
             return spotifyLogoWhite;
-        case "black":
+        case "dark":
             return spotifyLogoBlack;
         case "green":
             return spotifyLogoGreen;
