@@ -16,79 +16,67 @@ import { cookieMaxAge, sessionCookie } from "./constants";
 import LoginPage from "@/components/Pages/LoginPage";
 import { SpotifyStats } from "@/components/Pages/SpotifyStats";
 import { useNavigate } from "react-router-dom";
-import { ErrorObject } from "ajv";
 import { getCookie } from "./helpers";
 
 function App() {
-  const [profile, setProfile] = useState<UserProfile | null>(() => {
-    const storedProfile = localStorage.getItem("profile");
-    return storedProfile ? JSON.parse(storedProfile) : null;
-  });
-  const [topArtists, setTopArtists] = useState<SpotifyItem[] | null>(() => {
-    const storedTopArtists = localStorage.getItem("topArtists");
-    return storedTopArtists ? JSON.parse(storedTopArtists) : null;
-  });
-  const [topTracks, setTopTracks] = useState<SpotifyItem[] | null>(() => {
-    const storedTopTracks = localStorage.getItem("topTracks");
-    return storedTopTracks ? JSON.parse(storedTopTracks) : null;
-  });
-  const [failedFetch, setFailedFetch] = useState(false);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [topArtists, setTopArtists] = useState<SpotifyItem[] | null>(null);
+  const [topTracks, setTopTracks] = useState<SpotifyItem[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [accessToken, setAccessToken] = useState<string | null>(
     getCookie(sessionCookie)
   );
 
-  const params = new URLSearchParams(window.location.search);
-  const authCode = params.get("code");
   const navigate = useNavigate();
-
-  const fetchAndStoreToken = async () => {
-    if (!authCode || failedFetch) {
-      await redirectToAuthCodeFlow();
-      return;
-    }
-  };
+  const authCode = new URLSearchParams(window.location.search).get("code");
 
   const fetchAccessToken = useCallback(async () => {
-    if (!authCode || accessToken) {
-      return;
-    }
-    setLoading(true);
-    await getAccessToken(authCode)
-      .then(async (token: string) => {
-        if (token) {
-          document.cookie = `${sessionCookie}=${token}; max-age=${cookieMaxAge}; Secure;`;
-          setAccessToken(token);
-          await fetchProfileData();
-        }
-      })
-      .then(() => {
-        navigate("/");
-      })
-      .catch((e: ErrorObject) => {
-        console.error("Error fetching access token:", e);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [authCode]);
+    if (!authCode || accessToken) return;
 
-  const periods = [
-    { queryParam: "short_term", label: "Very Recent" },
-    {
-      queryParam: "medium_term",
-      label: "Recent",
-      default: true,
-    },
-    { queryParam: "long_term", label: "Long Term" },
-  ];
+    try {
+      setLoading(true);
+      const token = await getAccessToken(authCode);
+      if (token) {
+        document.cookie = `${sessionCookie}=${token}; max-age=${cookieMaxAge}; Secure;`;
+        setAccessToken(token);
+        navigate("/"); //i.e. spotifyStats
+      }
+    } catch (error) {
+      alert("Failed to authenticate. Please try again or contact admin.");
+      console.error("Error fetching access token:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [authCode, accessToken, navigate]);
+
+  const fetchProfileData = useCallback(async () => {
+    if (!accessToken) return;
+
+    try {
+      setLoading(true);
+      const [userProfile, artistResponse, trackResponse] = await Promise.all([
+        fetchProfile(accessToken),
+        fetchUserTopItems({ type: "artists", time_range: "medium_term", limit: 10 }, accessToken),
+        fetchUserTopItems({ type: "tracks", time_range: "medium_term", limit: 10 }, accessToken),
+      ]);
+
+      setProfile(userProfile);
+      setTopArtists(artistResponse.items);
+      setTopTracks(trackResponse.items);
+    } catch (error) {
+      alert("Error fetching your data, please try again or contact the admin if error persists");
+      console.error("Error fetching profile data:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [accessToken]);
 
   const handlePeriodChange = async (
     timeRange: FetchUserTopItemsParams["time_range"],
     type: "artists" | "tracks"
   ) => {
     try {
-      await fetchUserTopItems({ type, time_range: timeRange, limit: 10 }).then(
+      await fetchUserTopItems({ type, time_range: timeRange, limit: 10 }, accessToken).then(
         (response: SpotifyTopArtistsTracksResponse) => {
           if (type === "artists") {
             setTopArtists(response.items);
@@ -100,61 +88,39 @@ function App() {
     } catch (e) {
       // @ts-expect-error unauthorized
       if (e.message === "Unauthorized") {
-        setFailedFetch(true);
+        console.error("Error fetching top items:", e);
+        alert("Error updating your data, please login again or contact the admin if error persists")
+        document.cookie = `${sessionCookie}=; max-age=0; Secure;`;
+        localStorage.removeItem("verifier");
+        document.location.reload();
       }
-      console.error("Error fetching top items:", e);
+      alert("Error updating your stats, please try again or contact the admin if error persists")
+      console.error("Error for handlePeriodChange:", e);
     }
   };
 
-  const fetchProfileData = async () => {
-    Promise.all([
-      fetchProfile(),
-      fetchUserTopItems({
-        type: "artists",
-        time_range: "medium_term",
-        limit: 10,
-      }),
-      fetchUserTopItems({
-        type: "tracks",
-        time_range: "medium_term",
-        limit: 10,
-      }),
-    ])
-      .then(([profile, topArtists, topTracks]) => {
-        if (profile) {
-          setProfile(profile);
-          localStorage.setItem("profile", JSON.stringify(profile));
-        }
-        setTopArtists(topArtists.items);
-        localStorage.setItem("topArtists", JSON.stringify(topArtists.items));
-        setTopTracks(topTracks.items);
-        localStorage.setItem("topTracks", JSON.stringify(topTracks.items));
-      })
-      .catch((e) => {
-        console.error("Error fetching profile and top artists:", e);
-        setFailedFetch(true);
-      });
+  const handleLogin = async () => {
+    await redirectToAuthCodeFlow();
   };
 
-  // get access token
   useEffect(() => {
     fetchAccessToken();
   }, [fetchAccessToken]);
 
-  if (loading) {
-    return <>Loading...</>;
-  }
+  useEffect(() => {
+    if (accessToken) {
+      fetchProfileData();
+    }
+  }, [accessToken, fetchProfileData]);
 
-  if (!accessToken) {
-    return <LoginPage onClick={fetchAndStoreToken} />;
-  }
+  if (loading) return <>Fetching your Spotify Stats...</>;
+  if (!accessToken) return <LoginPage onClick={handleLogin} />;
 
   return (
     <SpotifyStats
       profile={profile}
       topArtists={topArtists}
       topTracks={topTracks}
-      periods={periods}
       onChange={handlePeriodChange}
     />
   );

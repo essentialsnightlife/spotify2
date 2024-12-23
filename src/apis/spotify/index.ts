@@ -17,6 +17,7 @@ export const getProfileImage = (profile: UserProfile) => {
   }
 };
 
+// redirect to spotify auth code flow and provides auth code in URL
 export async function redirectToAuthCodeFlow() {
   const verifier = generateCodeVerifier(128);
   const challenge = await generateCodeChallenge(verifier);
@@ -100,7 +101,7 @@ export async function fetchUserTopItems({
   type,
   time_range = "medium_term",
   limit,
-}: FetchUserTopItemsParams): Promise<SpotifyTopArtistsTracksResponse> {
+}: FetchUserTopItemsParams, accessToken: string | null): Promise<SpotifyTopArtistsTracksResponse> {
   const queryParams = new URLSearchParams({
     time_range,
     ...(limit && { limit: limit.toString() }),
@@ -110,7 +111,7 @@ export async function fetchUserTopItems({
     `https://api.spotify.com/v1/me/top/${type}?${queryParams}`,
     {
       method: "GET",
-      headers: { Authorization: `Bearer ${getCookie(sessionCookie)}` },
+      headers: { Authorization: `Bearer ${accessToken || getCookie(sessionCookie)}` },
     }
   );
 
