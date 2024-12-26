@@ -79,11 +79,6 @@ export default {
             link: "https://www.tiktok.com/@dj_eds_d1",
             title: "DJ Eds D1 TikTok",
         },
-        {
-            icon: <SoundCloudIcon/>,
-            link: "https://soundcloud.com/eds_d1",
-            title: "DJ Eds D1 SoundCloud",
-        },
     ],
     menus: [
         {

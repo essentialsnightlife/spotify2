@@ -27,6 +27,8 @@ import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
+import SoundCloudPlayer from "components/SoundcloudPlayer";
+
 function DefaultFooter({ content }) {
   const { brand, socials, menus, copyright } = content;
 
@@ -34,7 +36,10 @@ function DefaultFooter({ content }) {
     <MKBox component="footer">
       <Container>
         <Grid container>
-          <Grid item xs={12} sx={{ textAlign: "center", mb: 1 }}>
+          <SoundCloudPlayer trackUrl="https://api.soundcloud.com/tracks/1822196787"/>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} sx={{ textAlign: "center", my: 1 }}>
             <MKTypography color="primary" variant="h6" sx={{ mb: 3 }}>{brand.name}</MKTypography>
             {socials.map(({ icon, link, title }, key) => (
                 <MKTypography
