@@ -28,7 +28,7 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "components/Navbars/DefaultNavbar";
 import DefaultFooter from "components/Footers/DefaultFooter";
 import MKButton from "components/MKButton/index";
-import VisualTeasers from "components/Pages/LoginPage/sections/VisualTeasers.jsx";
+import VisualTeasers from "components/Pages/Login/sections/VisualTeasers.jsx";
 
 // Routes
 import footerRoutes from "@/footer.routes";
@@ -47,9 +47,9 @@ function LoginPage({ onClick }) {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
       if (window.innerWidth < breakpoints.values.lg) {
-        setBrandText("Your Spotify Stats");
+        setBrandText("Your Music Stats");
       } else {
-        setBrandText("Your Spotify Stats | Free from DJ Eds D1");
+        setBrandText("Your Music Stats | Free from DJ Eds D1");
       }
     }
 
@@ -96,8 +96,8 @@ function LoginPage({ onClick }) {
           backgroundPosition: "center",
           display: "grid",
           placeItems: "center",
-          height: 'auto',
-          padding: '8rem 0'
+          height: "auto",
+          padding: "8rem 0",
         }}
       >
         <Container>
@@ -118,7 +118,7 @@ function LoginPage({ onClick }) {
                 },
               })}
             >
-              Welcome to Your Spotify Stats
+              Welcome to Your Music Stats
             </MKTypography>
             <MKTypography variant="body1" color="white" mt={2}>
               Tell your musical stories with this free tool.
@@ -130,9 +130,9 @@ function LoginPage({ onClick }) {
                 Login with Spotify
               </MKButton>
             </Stack>
-             <Grid container direction="column" alignItems="center" mt={2}>
-                 <SpotifyAttribution />
-             </Grid>
+            <Grid container direction="column" alignItems="center" mt={2}>
+              <SpotifyAttribution />
+            </Grid>
           </Grid>
         </Container>
       </MKBox>

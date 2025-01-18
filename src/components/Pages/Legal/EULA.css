@@ -1,0 +1,71 @@
+/* General body styles */
+[data-custom-class="body"],
+[data-custom-class="body"] * {
+  background: transparent !important;
+}
+
+/* Title styles */
+[data-custom-class="title"],
+[data-custom-class="title"] * {
+  font-family: Arial, sans-serif !important;
+  font-size: 26px !important;
+  color: #000000 !important;
+}
+
+/* Subtitle styles */
+[data-custom-class="subtitle"],
+[data-custom-class="subtitle"] * {
+  font-family: Arial, sans-serif !important;
+  color: #595959 !important;
+  font-size: 14px !important;
+}
+
+/* Heading 1 styles */
+[data-custom-class="heading_1"],
+[data-custom-class="heading_1"] * {
+  font-family: Arial, sans-serif !important;
+  font-size: 19px !important;
+  color: #000000 !important;
+}
+
+/* Heading 2 styles */
+[data-custom-class="heading_2"],
+[data-custom-class="heading_2"] * {
+  font-family: Arial, sans-serif !important;
+  font-size: 17px !important;
+  color: #000000 !important;
+}
+
+/* Body text styles */
+[data-custom-class="body_text"],
+[data-custom-class="body_text"] * {
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
+  color: #595959 !important;
+}
+
+/* Link styles */
+[data-custom-class="link"],
+[data-custom-class="link"] * {
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
+  color: #3030f1 !important;
+  word-break: break-word !important;
+}
+
+/* List styles */
+ul {
+  list-style-type: square;
+}
+
+ul > li > ul {
+  list-style-type: circle;
+}
+
+ul > li > ul > li > ul {
+  list-style-type: square;
+}
+
+ol li {
+  font-family: Arial, sans-serif;
+}

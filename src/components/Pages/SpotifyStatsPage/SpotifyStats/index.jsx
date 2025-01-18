@@ -25,9 +25,9 @@ import MKBox from "components/MKBox";
 import DefaultNavbar from "components/Navbars/DefaultNavbar";
 import DefaultFooter from "components/Footers/DefaultFooter";
 
-// LoginPage page sections
-import TopArtists from "components/Pages/SpotifyStats/sections/TopArtists/index.jsx";
-import TopTracks from "components/Pages/SpotifyStats/sections/TopTracks/index.jsx";
+// Login page sections
+import TopArtists from "components/Pages/SpotifyStatsPage/SpotifyStats/sections/TopArtists/index.jsx";
+import TopTracks from "components/Pages/SpotifyStatsPage/SpotifyStats/sections/TopTracks/index.jsx";
 import breakpoints from "assets/theme/base/breakpoints";
 
 // Routes
@@ -60,10 +60,10 @@ export function logout() {
   document.location.reload();
 }
 
-export function SpotifyStats({ profile, topArtists, topTracks, onChange }) {
+export function SpotifyStats({ profile, topArtists, topTracks, onChange, loading }) {
   const displayName = profile?.display_name;
   const [brandText, setBrandText] = useState(
-    "Your Spotify Stats | Free from DJ Eds D1"
+    "Your Music Stats | Free from DJ Eds D1"
   );
 
   // use this to change brand text
@@ -71,9 +71,9 @@ export function SpotifyStats({ profile, topArtists, topTracks, onChange }) {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
       if (window.innerWidth < breakpoints.values.lg) {
-        setBrandText("Your Spotify Stats");
+        setBrandText("Your Music Stats");
       } else {
-        setBrandText("Your Spotify Stats | Free from DJ Eds D1");
+        setBrandText("Your Music Stats | Free from DJ Eds D1");
       }
     }
 
@@ -89,6 +89,8 @@ export function SpotifyStats({ profile, topArtists, topTracks, onChange }) {
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", displayMobileNavbar);
   }, []);
+
+  if (loading) return <>Fetching your Spotify Stats...</>;
 
   return (
     <>
