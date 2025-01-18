@@ -59,6 +59,62 @@ function DefaultFooter({ content }) {
               Your privacy is respected, we do not store any personal or Spotify data.
             </MKTypography>
           </Grid>
+          {menus.map(({ name: title, items }, key) => (
+              <Grid
+                  key={title}
+                  item
+                  xs={12}
+                  md={2}
+                  sx={{
+                    mt: 2,
+                    textAlign: "center",
+                    mx: "auto",
+                  }}
+              >
+              <MKTypography
+                    component="h6"
+                    variant="button"
+                    fontWeight="bold"
+                    textTransform="capitalize"
+                    mb={1}
+                >
+                  {title}
+                </MKTypography>
+                <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
+                  {items.map(({ name, route, href }) => (
+                      <MKBox key={name} component="li" p={0} m={0} lineHeight={1.25}>
+                        {href ? (
+                            <MKTypography
+                                component="a"
+                                href={href}
+                                target="_blank"
+                                rel="noreferrer"
+                                variant="button"
+                                color="secondary"
+                                fontWeight="regular"
+                                textTransform="capitalize"
+                                pb={0.5}
+                            >
+                              {name}
+                            </MKTypography>
+                        ) : (
+                            <MKTypography
+                                component={Link}
+                                to={route}
+                                variant="button"
+                                color="secondary"
+                                fontWeight="regular"
+                                textTransform="capitalize"
+                                pb={0.5}
+                            >
+                              {name}
+                            </MKTypography>
+                        )}
+                      </MKBox>
+                  ))}
+                </MKBox>
+              </Grid>
+          ))}
           <Grid item xs={12} sx={{ textAlign: "center", my: 3 }}>
             {copyright}
           </Grid>
