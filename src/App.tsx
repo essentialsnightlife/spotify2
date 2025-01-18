@@ -5,6 +5,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Login from "@/components/Pages/Login";
 import SpotifyStatsPage from "@/components/Pages/SpotifyStatsPage";
 import EULA from "components/Pages/Legal/EULA";
+import PrivacyPolicy from "components/Pages/Legal/PrivacyPolicy";
 
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -148,7 +149,8 @@ function App() {
       />
       <Route path="/login" element={<Login onClick={handleLogin} />} />
       <Route path="legal">
-        <Route path="EULA" element={<EULA />} />
+        <Route path="eula" element={<EULA />} />
+        <Route path="privacy" element={<PrivacyPolicy />} />
       </Route>
       <Route path="*" element={<>404 - Page Not Found</>} />
     </Routes>

@@ -83,7 +83,7 @@ export default {
       name: "legal",
       items: [
         { name: "licenses (EULA)", href: "/legal/eula" },
-        // {name: "terms & conditions", href: "https://www.creative-tim.com/terms"},
+        { name: "privacy policy", href: "/legal/privacy" },
       ],
     },
   ],
