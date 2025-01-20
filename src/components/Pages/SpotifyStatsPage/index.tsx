@@ -40,7 +40,7 @@ function SpotifyStatsPage() {
     } catch (error) {
       console.error("Error fetching profile data:", error);
       alert(
-        "Error fetching your data, please try again or contact the admin if error persists"
+        "Error fetching your data, please try and login again or email the admin."
       );
     } finally {
       setLoading(false);
@@ -63,7 +63,7 @@ function SpotifyStatsPage() {
       }
     } catch (error) {
       console.error("Error updating stats:", error);
-      alert("Error updating your stats, please try again later.");
+      alert("Error updating your stats, please try and login again or email the admin.");
     }
   };
 

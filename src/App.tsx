@@ -76,7 +76,7 @@ function App() {
       setTopTracks(trackResponse.items);
     } catch (error) {
       alert(
-        "Error fetching your data, please try again or contact the admin if error persists"
+        "Error fetching your data, please try and login again or email the admin."
       );
       console.error("Error fetching profile data:", error);
     } finally {
@@ -111,7 +111,7 @@ function App() {
         document.location.reload();
       }
       alert(
-        "Error updating your stats, please try again or contact the admin if error persists"
+        "Error updating your stats, please try and login again or email the admin."
       );
       console.error("Error for handlePeriodChange:", e);
     }
