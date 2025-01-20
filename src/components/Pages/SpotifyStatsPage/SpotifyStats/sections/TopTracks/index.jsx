@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 // @mui material components
 import Container from "@mui/material/Container";
@@ -34,6 +34,7 @@ import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 // Images
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
 import { SpotifyAttribution } from "components/SpotifyAttribution";
+import { toPng } from "html-to-image";
 
 const TopTracksCard = ({ spotifyItem, number }) => {
   const { album, artists, images, name, popularity, external_urls } =
@@ -68,6 +69,8 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
     periods?.find((period) => period.default)?.label || "Select Period"
   );
 
+  const ref = useRef(null);
+
   const openDropdown = (event) => setDropdown(event.currentTarget);
   const closeDropdown = () => setDropdown(null);
 
@@ -75,6 +78,28 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
     setSelectedPeriod(period.queryParam);
     setSelectedPeriodLabel(period.label);
     onChange(period.queryParam, "tracks");
+  };
+
+  const onShareButtonClick = async () => {
+    if (!ref.current) return;
+
+    try {
+      const dataUrl = await toPng(ref.current, { cacheBust: true });
+      const link = document.createElement("a");
+      link.download = `my-top-tracks-${new Date().toLocaleString("en-UK", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      alert(
+        "Error generating image. Please try again later or email admin if it persists."
+      );
+      console.error("Error generating image:", err);
+    }
   };
 
   const iconStyles = {
@@ -117,14 +142,6 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
             <MKTypography variant="h2" color="dark" mb={4}>
               Your Top Tracks
             </MKTypography>
-            <MKBadge
-              badgeContent={`For ${displayName || "you"}`}
-              variant="contained"
-              color="primary"
-              size="lg"
-              container
-              sx={{ mb: 4 }}
-            />
             <MKTypography
               variant="body1"
               color="dark"
@@ -180,18 +197,59 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
             </MKBox>
           </Grid>
         </Grid>
-        <Grid container sx={{ mb: 4 }}>
-          <SpotifyAttribution color="dark" logoWidth="10%" />
-        </Grid>
-        <Grid container spacing={3}>
-          {topTracks &&
-            topTracks?.map((track, index) => (
-              <TopTracksCard
-                spotifyItem={track}
-                number={index + 1}
-                key={track.id}
-              />
-            ))}
+        <div ref={ref}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <MKBadge
+              badgeContent={`Top Tracks${
+                displayName ? " for " + displayName : ""
+              }${
+                selectedPeriod ? " || " + selectedPeriod : ""
+              } || ${new Date().toLocaleString("en-UK", {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}`}
+              variant="contained"
+              color="primary"
+              size="lg"
+              container
+              sx={{ mb: 4 }}
+            />
+          </div>
+          <Grid container spacing={3}>
+            {topTracks &&
+              topTracks?.map((track, index) => (
+                <TopTracksCard
+                  spotifyItem={track}
+                  number={index + 1}
+                  key={track.id}
+                />
+              ))}
+          </Grid>
+        </div>
+        <Grid
+          container
+          sx={{ mb: 4, justifyContent: "center", alignItems: "center" }}
+        >
+          <MKButton
+            variant="gradient"
+            color="primary"
+            size="large"
+            onClick={onShareButtonClick}
+            aria-haspopup="true"
+            sx={{ mt: 4 }}
+          >
+            Share your Top Tracks
+            <Icon sx={dropdownIconStyles}>downloading</Icon>
+          </MKButton>
         </Grid>
       </Container>
     </MKBox>

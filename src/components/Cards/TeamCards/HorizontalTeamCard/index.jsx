@@ -62,11 +62,11 @@ function HorizontalTeamCard({ image, name, position, description, href }) {
               shadow="lg"
             />
             <SpotifyAttribution
-                logoWidth="60%"
-                text=""
-                color="dark"
-                href={href}
-                textAlign="left"
+              logoWidth="60%"
+              text=""
+              color="dark"
+              href={href}
+              textAlign="left"
             />
           </MKBox>
         </Grid>
