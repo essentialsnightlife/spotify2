@@ -25,6 +25,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import fallbackImage from "/noImg.png";
 import MKButton from "components/MKButton/index.jsx";
+import { SpotifyAttribution } from "components/SpotifyAttribution/index.jsx";
 
 const SpotifyPlayButton = ({ href }) => {
   return (
@@ -59,6 +60,13 @@ function HorizontalTeamCard({ image, name, position, description, href }) {
               width="100%"
               borderRadius="md"
               shadow="lg"
+            />
+            <SpotifyAttribution
+                logoWidth="60%"
+                text=""
+                color="dark"
+                href={href}
+                textAlign="left"
             />
           </MKBox>
         </Grid>
