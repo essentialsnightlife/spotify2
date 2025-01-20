@@ -34,146 +34,170 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { SpotifyAttribution } from "components/SpotifyAttribution";
 
-const TopArtistsCard = ({spotifyItem, number}) => {
-    const {genres, images, name, popularity, external_urls} = spotifyItem;
-    const href = external_urls?.spotify;
-    const setGenreLimit = 4
-    const formattedGenres = genres?.slice(0, setGenreLimit).join(", ");
+const TopArtistsCard = ({ spotifyItem, number }) => {
+  const { genres, images, name, popularity, external_urls } = spotifyItem;
+  const href = external_urls?.spotify;
+  const setGenreLimit = 4;
+  const formattedGenres = genres?.slice(0, setGenreLimit).join(", ");
 
-    return (
-        <Grid item xs={12} lg={6}>
-            <MKBox mb={1}>
-                <HorizontalTeamCard
-                    image={images[0]?.url}
-                    name={name}
-                    position={{color: "primary", label: "#" + number + " | Popularity: " + popularity}}
-                    description={formattedGenres}
-                    href={href}
-                />
-            </MKBox>
-        </Grid>
-    );
+  return (
+    <Grid item xs={12} lg={6}>
+      <MKBox mb={1}>
+        <HorizontalTeamCard
+          image={images[0]?.url}
+          name={name}
+          position={{
+            color: "primary",
+            label: "#" + number + " | Popularity: " + popularity,
+          }}
+          description={formattedGenres}
+          href={href}
+        />
+      </MKBox>
+    </Grid>
+  );
+};
 
-}
+function TopArtists({ topArtists, periods, displayName, onChange }) {
+  const [dropdown, setDropdown] = useState(null);
+  const [selectedPeriod, setSelectedPeriod] = useState(
+    periods?.find((period) => period.default)?.queryParam || ""
+  );
+  const [selectedPeriodLabel, setSelectedPeriodLabel] = useState(
+    periods?.find((period) => period.default)?.label || "Select Period"
+  );
 
+  const openDropdown = (event) => setDropdown(event.currentTarget);
+  const closeDropdown = () => setDropdown(null);
 
-function TopArtists({topArtists, periods, displayName, onChange}) {
-    const [dropdown, setDropdown] = useState(null);
-    const [selectedPeriod, setSelectedPeriod] = useState(
-        periods?.find((period) => period.default)?.queryParam || ""
-    );
-    const [selectedPeriodLabel, setSelectedPeriodLabel] = useState(
-        periods?.find((period) => period.default)?.label || "Select Period"
-    );
+  const handleSelection = (event, period) => {
+    setSelectedPeriod(period.queryParam);
+    setSelectedPeriodLabel(period.label);
+    onChange(period.queryParam, "artists");
+  };
 
-    const openDropdown = (event) => setDropdown(event.currentTarget);
-    const closeDropdown = () => setDropdown(null);
+  const iconStyles = {
+    ml: 1,
+    fontWeight: "bold",
+    transition: "transform 200ms ease-in-out",
+  };
 
-    const handleSelection = (event, period) => {
-        setSelectedPeriod(period.queryParam);
-        setSelectedPeriodLabel(period.label);
-        onChange(period.queryParam, "artists");
-    };
+  const dropdownIconStyles = {
+    transform: dropdown ? "rotate(180deg)" : "rotate(0)",
+    ...iconStyles,
+  };
 
-    const iconStyles = {
-        ml: 1,
-        fontWeight: "bold",
-        transition: "transform 200ms ease-in-out",
-    };
-
-    const dropdownIconStyles = {
-        transform: dropdown ? "rotate(180deg)" : "rotate(0)",
-        ...iconStyles,
-    };
-
-    return (
-        <MKBox position="relative" variant="gradient" bgColor="dark" mt={6} py={4} mx={-2}>
-            <MKBox
-                component="img"
-                src={bgPattern}
-                alt="background-pattern"
-                position="absolute"
-                top={0}
-                left={0}
-                width="100%"
-                opacity={0.2}
-                display={{xs: "none", md: "block"}}
+  return (
+    <MKBox
+      position="relative"
+      variant="gradient"
+      bgColor="dark"
+      mt={6}
+      py={4}
+      mx={-2}
+    >
+      <MKBox
+        component="img"
+        src={bgPattern}
+        alt="background-pattern"
+        position="absolute"
+        top={0}
+        left={0}
+        width="100%"
+        opacity={0.2}
+        display={{ xs: "none", md: "block" }}
+      />
+      <Container>
+        <Grid
+          container
+          justifyContent="center"
+          sx={{ pt: 8, pb: 5, position: "relative", zIndex: 3 }}
+        >
+          <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
+            <MKTypography variant="h2" color="white" mb={4}>
+              Your Top Artists
+            </MKTypography>
+            <MKBadge
+              badgeContent={`For ${displayName || "you"}`}
+              variant="contained"
+              color="primary"
+              size="lg"
+              container
+              sx={{ mb: 4 }}
             />
-            <Container>
-                <Grid
-                    container
-                    justifyContent="center"
-                    sx={{pt: 8, pb: 5, position: "relative", zIndex: 3}}
-                >
-                    <Grid item xs={12} md={6} sx={{textAlign: "center"}}>
-                        <MKTypography variant="h2" color="white" mb={4}>
-                            Your Top Artists
-                        </MKTypography>
-                        <MKBadge
-                            badgeContent={`For ${displayName || "you"}`}
-                            variant="contained"
-                            color="primary"
-                            size="lg"
-                            container
-                            sx={{mb: 4}}
-                        />
-                        <MKTypography variant="body1" color="white" fontWeight="light" sx={{mb: 2}}>
-                            Here are your most played artists, use the drop down menu to see different time periods.
-                        </MKTypography>
-                        <MKTypography variant="body1" color="white" fontWeight="light">
-                            Popularity comes from Spotify's Popularity Index, a 0-to-100 score after ranking artists.
-                        </MKTypography>
-                        <MKBox component="section" py={6}>
-                            <Container>
-                                <Grid container spacing={3} justifyContent="center">
-                                    <Grid item xs={12} md={6} textAlign="center">
-                                        <MKButton
-                                            variant="gradient"
-                                            color="primary"
-                                            size="large"
-                                            onClick={openDropdown}
-                                            aria-controls={dropdown ? "periods-artists-menu" : undefined}
-                                            aria-haspopup="true"
-                                            aria-expanded={Boolean(dropdown)}
-                                        >
-                                            {selectedPeriodLabel} <Icon sx={dropdownIconStyles}>expand_more</Icon>
-                                        </MKButton>
-                                        <Menu
-                                            id="periods-artists-menu"
-                                            anchorEl={dropdown}
-                                            open={Boolean(dropdown)}
-                                            onClose={closeDropdown}
-                                        >
-                                            {periods && periods.map((period) => (
-                                                <MenuItem
-                                                    key={period.queryParam}
-                                                    onClick={(e) => {
-                                                        handleSelection(e, period);
-                                                        closeDropdown();
-                                                    }}
-                                                    selected={selectedPeriod === period.queryParam}
-                                                >
-                                                    {period.label}
-                                                </MenuItem>
-                                            ))}
-                                        </Menu>
-                                    </Grid>
-                                </Grid>
-                            </Container>
-                        </MKBox>
-                    </Grid>
+            <MKTypography
+              variant="body1"
+              color="white"
+              fontWeight="light"
+              sx={{ mb: 2 }}
+            >
+              Here are your most played artists, use the drop down menu to see
+              different time periods.
+            </MKTypography>
+            <MKTypography variant="body1" color="white" fontWeight="light">
+              Popularity comes from Spotify's Popularity Index, a 0-to-100 score
+              after ranking artists.
+            </MKTypography>
+            <MKBox component="section" py={6}>
+              <Container>
+                <Grid container spacing={3} justifyContent="center">
+                  <Grid item xs={12} md={6} textAlign="center">
+                    <MKButton
+                      variant="gradient"
+                      color="primary"
+                      size="large"
+                      onClick={openDropdown}
+                      aria-controls={
+                        dropdown ? "periods-artists-menu" : undefined
+                      }
+                      aria-haspopup="true"
+                      aria-expanded={Boolean(dropdown)}
+                    >
+                      {selectedPeriodLabel}{" "}
+                      <Icon sx={dropdownIconStyles}>expand_more</Icon>
+                    </MKButton>
+                    <Menu
+                      id="periods-artists-menu"
+                      anchorEl={dropdown}
+                      open={Boolean(dropdown)}
+                      onClose={closeDropdown}
+                    >
+                      {periods &&
+                        periods.map((period) => (
+                          <MenuItem
+                            key={period.queryParam}
+                            onClick={(e) => {
+                              handleSelection(e, period);
+                              closeDropdown();
+                            }}
+                            selected={selectedPeriod === period.queryParam}
+                          >
+                            {period.label}
+                          </MenuItem>
+                        ))}
+                    </Menu>
+                  </Grid>
                 </Grid>
-                <Grid container sx={{mb: 4}}>
-                    <SpotifyAttribution logoWidth="10%" />
-                </Grid>
-                <Grid container spacing={3}>
-                    {topArtists && topArtists?.map((artist, index) => (
-                        <TopArtistsCard spotifyItem={artist} number={index + 1} key={artist.id}/>
-                    ))}
-                </Grid>
-            </Container>
-        </MKBox>
-    );
+              </Container>
+            </MKBox>
+          </Grid>
+        </Grid>
+        <Grid container sx={{ mb: 4 }}>
+          <SpotifyAttribution logoWidth="10%" />
+        </Grid>
+        <Grid container spacing={3}>
+          {topArtists &&
+            topArtists?.map((artist, index) => (
+              <TopArtistsCard
+                spotifyItem={artist}
+                number={index + 1}
+                key={artist.id}
+              />
+            ))}
+        </Grid>
+      </Container>
+    </MKBox>
+  );
 }
 
 export default TopArtists;

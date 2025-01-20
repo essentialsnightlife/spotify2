@@ -59,10 +59,20 @@ function ComplexReviewCard({ image, color = "dark", title, review, author }) {
             sx={{ p: 0.5 }}
           />
           <MKBox pl={1.5}>
-            <MKTypography display="block" variant="button" color={color} fontWeight="bold">
+            <MKTypography
+              display="block"
+              variant="button"
+              color={color}
+              fontWeight="bold"
+            >
               {author.name}
             </MKTypography>
-            <MKTypography display="block" variant="button" color="text" fontWeight="regular">
+            <MKTypography
+              display="block"
+              variant="button"
+              color="text"
+              fontWeight="regular"
+            >
               {author.role}
             </MKTypography>
           </MKBox>

@@ -24,7 +24,14 @@ import MKBox from "components/MKBox";
 import MKAvatar from "components/MKAvatar";
 import MKTypography from "components/MKTypography";
 
-function DefaultReviewCard({ color = "transparent", image = "", name, date, review, rating }) {
+function DefaultReviewCard({
+  color = "transparent",
+  image = "",
+  name,
+  date,
+  review,
+  rating,
+}) {
   const ratings = {
     0.5: [
       <Icon key={1}>star_outline</Icon>,
@@ -121,7 +128,9 @@ function DefaultReviewCard({ color = "transparent", image = "", name, date, revi
           display="block"
           variant={image ? "button" : "h6"}
           fontWeight="bold"
-          color={color === "transparent" || color === "light" ? "dark" : "white"}
+          color={
+            color === "transparent" || color === "light" ? "dark" : "white"
+          }
           mb={0.5}
         >
           {name}
@@ -130,7 +139,9 @@ function DefaultReviewCard({ color = "transparent", image = "", name, date, revi
           variant={image ? "caption" : "button"}
           fontWeight="regular"
           lineHeight={1}
-          color={color === "transparent" || color === "light" ? "text" : "white"}
+          color={
+            color === "transparent" || color === "light" ? "text" : "white"
+          }
           sx={{ display: "flex", alignItems: "center" }}
         >
           <Icon>schedule</Icon>&nbsp;

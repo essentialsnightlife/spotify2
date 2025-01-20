@@ -23,7 +23,13 @@ import Icon from "@mui/material/Icon";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function RotatingCardFront({ color = "info", image, icon = "", title, description }) {
+function RotatingCardFront({
+  color = "info",
+  image,
+  icon = "",
+  title,
+  description,
+}) {
   return (
     <MKBox
       display="flex"
@@ -35,10 +41,19 @@ function RotatingCardFront({ color = "info", image, icon = "", title, descriptio
       position="relative"
       zIndex={2}
       sx={{
-        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) =>
+        backgroundImage: ({
+          palette: { gradients },
+          functions: { linearGradient, rgba },
+        }) =>
           `${linearGradient(
-            rgba(gradients[color] ? gradients[color].main : gradients.info.main, 0.85),
-            rgba(gradients[color] ? gradients[color].main : gradients.info.main, 0.85)
+            rgba(
+              gradients[color] ? gradients[color].main : gradients.info.main,
+              0.85
+            ),
+            rgba(
+              gradients[color] ? gradients[color].main : gradients.info.main,
+              0.85
+            )
           )}, url(${image})`,
         backgroundSize: "cover",
         backfaceVisibility: "hidden",

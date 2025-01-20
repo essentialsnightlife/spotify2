@@ -23,7 +23,13 @@ import Icon from "@mui/material/Icon";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function SimpleInfoCard({ color = "info", icon, title, description, direction = "left" }) {
+function SimpleInfoCard({
+  color = "info",
+  icon,
+  title,
+  description,
+  direction = "left",
+}) {
   let alignment = "flex-start";
 
   if (direction === "center") {
@@ -55,7 +61,13 @@ function SimpleInfoCard({ color = "info", icon, title, description, direction = 
       >
         {typeof icon === "string" ? <Icon fontSize="small">{icon}</Icon> : icon}
       </MKBox>
-      <MKTypography display="block" variant="5" fontWeight="bold" mt={2.5} mb={1.5}>
+      <MKTypography
+        display="block"
+        variant="5"
+        fontWeight="bold"
+        mt={2.5}
+        mb={1.5}
+      >
         {title}
       </MKTypography>
       <MKTypography display="block" variant="body2" color="text">

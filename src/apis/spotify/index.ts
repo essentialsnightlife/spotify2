@@ -97,11 +97,10 @@ export async function fetchProfile(): Promise<UserProfile> {
   return result.json();
 }
 
-export async function fetchUserTopItems({
-  type,
-  time_range = "medium_term",
-  limit,
-}: FetchUserTopItemsParams, accessToken: string | null): Promise<SpotifyTopArtistsTracksResponse> {
+export async function fetchUserTopItems(
+  { type, time_range = "medium_term", limit }: FetchUserTopItemsParams,
+  accessToken: string | null
+): Promise<SpotifyTopArtistsTracksResponse> {
   const queryParams = new URLSearchParams({
     time_range,
     ...(limit && { limit: limit.toString() }),
@@ -111,7 +110,9 @@ export async function fetchUserTopItems({
     `https://api.spotify.com/v1/me/top/${type}?${queryParams}`,
     {
       method: "GET",
-      headers: { Authorization: `Bearer ${accessToken || getCookie(sessionCookie)}` },
+      headers: {
+        Authorization: `Bearer ${accessToken || getCookie(sessionCookie)}`,
+      },
     }
   );
 

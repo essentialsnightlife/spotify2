@@ -24,7 +24,13 @@ import MKBox from "components/MKBox";
 import MKAvatar from "components/MKAvatar";
 import MKTypography from "components/MKTypography";
 
-function TransparentTeamCard({ image, name, position, description = "", socials = "" }) {
+function TransparentTeamCard({
+  image,
+  name,
+  position,
+  description = "",
+  socials = "",
+}) {
   return (
     <MKBox display="flex" flexDirection="column">
       <MKBox position="relative" width="max-content">

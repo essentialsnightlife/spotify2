@@ -131,7 +131,12 @@ function DefaultBlogCard({
               variant={raised ? "circular" : "rounded"}
             />
             <MKBox pl={2} lineHeight={0}>
-              <MKTypography component="h6" variant="button" fontWeight="medium" gutterBottom>
+              <MKTypography
+                component="h6"
+                variant="button"
+                fontWeight="medium"
+                gutterBottom
+              >
                 {author.name}
               </MKTypography>
               <MKTypography variant="caption" color="text">

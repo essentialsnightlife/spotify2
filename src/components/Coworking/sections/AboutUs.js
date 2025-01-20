@@ -36,9 +36,9 @@ function AboutUs() {
               Read More About Us
             </MKTypography>
             <MKTypography variant="body2" color="text" mb={2}>
-              Pain is what we go through as we become older. We get insulted by others, lose trust
-              for those others. We get back stabbed by friends. It becomes harder for us to give
-              others a hand.
+              Pain is what we go through as we become older. We get insulted by
+              others, lose trust for those others. We get back stabbed by
+              friends. It becomes harder for us to give others a hand.
             </MKTypography>
             <MKTypography
               component="a"
@@ -54,19 +54,26 @@ function AboutUs() {
                 "& .material-icons-round": {
                   fontSize: "1.125rem",
                   transform: "translateX(3px)",
-                  transition: "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
+                  transition:
+                    "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
                 },
 
-                "&:hover .material-icons-round, &:focus .material-icons-round": {
-                  transform: "translateX(6px)",
-                },
+                "&:hover .material-icons-round, &:focus .material-icons-round":
+                  {
+                    transform: "translateX(6px)",
+                  },
               }}
             >
               More about us
               <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
             </MKTypography>
           </Grid>
-          <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
+          <Grid
+            item
+            xs={12}
+            lg={6}
+            sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}
+          >
             <Stack>
               <AboutUsOption
                 icon="mediation"

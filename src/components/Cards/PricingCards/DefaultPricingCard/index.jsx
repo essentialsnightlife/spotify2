@@ -66,7 +66,9 @@ function DefaultPricingCard({
   ));
 
   return (
-    <Card sx={{ boxShadow: ({ boxShadows: { lg } }) => (shadow ? lg : "none") }}>
+    <Card
+      sx={{ boxShadow: ({ boxShadows: { lg } }) => (shadow ? lg : "none") }}
+    >
       <MKBox
         bgColor={color}
         variant={color === "white" ? "contained" : "gradient"}
@@ -94,7 +96,10 @@ function DefaultPricingCard({
         </MKBox>
         <MKBox pt={3} pb={2} px={2} textAlign="center">
           <MKBox my={1}>
-            <MKTypography variant="h1" color={color === "white" ? "dark" : "white"}>
+            <MKTypography
+              variant="h1"
+              color={color === "white" ? "dark" : "white"}
+            >
               <MKTypography
                 display="inline"
                 component="small"
@@ -105,7 +110,12 @@ function DefaultPricingCard({
                 {price.currency}
               </MKTypography>
               {price.value}
-              <MKTypography display="inline" component="small" variant="h5" color="inherit">
+              <MKTypography
+                display="inline"
+                component="small"
+                variant="h5"
+                color="inherit"
+              >
                 /{price.type}
               </MKTypography>
             </MKTypography>
@@ -179,7 +189,8 @@ DefaultPricingCard.propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
-  specifications: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  specifications: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object]))
+    .isRequired,
   action: PropTypes.shape({
     type: PropTypes.oneOf(["external", "internal"]).isRequired,
     route: PropTypes.string.isRequired,

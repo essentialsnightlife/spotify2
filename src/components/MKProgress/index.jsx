@@ -25,7 +25,16 @@ import MKTypography from "components/MKTypography";
 import MKProgressRoot from "components/MKProgress/MKProgressRoot";
 
 const MKProgress = forwardRef(
-  ({ variant = "contained", color = "info", value = 0, label = false, ...rest }, ref) => (
+  (
+    {
+      variant = "contained",
+      color = "info",
+      value = 0,
+      label = false,
+      ...rest
+    },
+    ref
+  ) => (
     <>
       {label && (
         <MKTypography variant="button" fontWeight="medium" color="text">

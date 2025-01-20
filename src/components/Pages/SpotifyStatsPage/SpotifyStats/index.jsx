@@ -60,7 +60,13 @@ export function logout() {
   document.location.reload();
 }
 
-export function SpotifyStats({ profile, topArtists, topTracks, onChange, loading }) {
+export function SpotifyStats({
+  profile,
+  topArtists,
+  topTracks,
+  onChange,
+  loading,
+}) {
   const displayName = profile?.display_name;
   const [brandText, setBrandText] = useState(
     "Your Music Stats | Free from DJ Eds D1"

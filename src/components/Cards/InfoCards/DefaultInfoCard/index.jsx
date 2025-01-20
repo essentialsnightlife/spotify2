@@ -32,7 +32,11 @@ function DefaultInfoCard({
   small = false,
 }) {
   return (
-    <MKBox lineHeight={1} p={direction === "center" ? 2 : 0} textAlign={direction}>
+    <MKBox
+      lineHeight={1}
+      p={direction === "center" ? 2 : 0}
+      textAlign={direction}
+    >
       {typeof icon === "string" ? (
         <MKTypography
           display="block"

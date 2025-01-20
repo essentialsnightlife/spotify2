@@ -1,11 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { fetchProfile, fetchUserTopItems } from "@/apis/spotify";
 import { SpotifyStats } from "@/components/Pages/SpotifyStatsPage/SpotifyStats";
-import {
-  FetchUserTopItemsParams,
-  SpotifyItem,
-  UserProfile,
-} from "@/types";
+import { FetchUserTopItemsParams, SpotifyItem, UserProfile } from "@/types";
 import { getCookie } from "@/helpers";
 import { sessionCookie } from "@/constants";
 
@@ -63,7 +59,9 @@ function SpotifyStatsPage() {
       }
     } catch (error) {
       console.error("Error updating stats:", error);
-      alert("Error updating your stats, please try and login again or email the admin.");
+      alert(
+        "Error updating your stats, please try and login again or email the admin."
+      );
     }
   };
 

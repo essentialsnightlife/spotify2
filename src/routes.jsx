@@ -98,7 +98,7 @@ Coded by www.creative-tim.com
 // import Toggles from "layouts/sections/elements/toggles";
 // import Typography from "layouts/sections/elements/typography";
 
-const routes = []
+const routes = [];
 
 // const routes = [
 //   {

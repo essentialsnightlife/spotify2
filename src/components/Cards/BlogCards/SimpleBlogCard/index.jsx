@@ -59,7 +59,12 @@ function SimpleBlogCard({ image, title, description, action }) {
         />
       </MKBox>
       <MKBox p={3} mt={-2}>
-        <MKTypography display="inline" variant="h5" textTransform="capitalize" fontWeight="regular">
+        <MKTypography
+          display="inline"
+          variant="h5"
+          textTransform="capitalize"
+          fontWeight="regular"
+        >
           {title}
         </MKTypography>
         <MKBox mt={1} mb={3}>

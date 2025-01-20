@@ -30,7 +30,13 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
 
-function SimpleBookingCard({ image, title, description, categories = [], action }) {
+function SimpleBookingCard({
+  image,
+  title,
+  description,
+  categories = [],
+  action,
+}) {
   return (
     <Card>
       <MKBox position="relative" borderRadius="lg" mx={2} mt={-3}>

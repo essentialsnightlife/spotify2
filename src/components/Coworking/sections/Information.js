@@ -33,7 +33,11 @@ function Information() {
             item
             xs={12}
             md={4}
-            sx={{ ml: { xs: 0, md: "auto" }, mr: { xs: 0, md: 6 }, mb: { xs: 4, md: 0 } }}
+            sx={{
+              ml: { xs: 0, md: "auto" },
+              mr: { xs: 0, md: 6 },
+              mb: { xs: 4, md: 0 },
+            }}
           >
             <Stack spacing={{ xs: 4, md: 8 }}>
               <SimpleInfoCard
@@ -52,7 +56,11 @@ function Information() {
             item
             xs={12}
             md={4}
-            sx={{ mr: { xs: 0, md: "auto" }, ml: { xs: 0, md: 6 }, mb: { xs: 4, md: 0 } }}
+            sx={{
+              mr: { xs: 0, md: "auto" },
+              ml: { xs: 0, md: 6 },
+              mb: { xs: 4, md: 0 },
+            }}
           >
             <Stack spacing={{ xs: 4, md: 8 }}>
               <SimpleInfoCard

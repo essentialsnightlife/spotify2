@@ -61,7 +61,10 @@ function Coworking() {
         minHeight="75vh"
         width="100%"
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { gradients },
+          }) =>
             `${linearGradient(
               rgba(gradients.dark.main, 0.5),
               rgba(gradients.dark.state, 0.5)
@@ -99,8 +102,8 @@ function Coworking() {
               pr={{ md: 12, lg: 24, xl: 32 }}
               opacity={0.8}
             >
-              The time is now for it be okay to be great. People in this world shun people for being
-              nice.
+              The time is now for it be okay to be great. People in this world
+              shun people for being nice.
             </MKTypography>
             <Stack direction="row" spacing={1} mt={6} mb={3}>
               <MKButton variant="gradient" color="info">
@@ -119,7 +122,8 @@ function Coworking() {
           mx: { xs: 2, lg: 3 },
           mt: -8,
           mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+            rgba(white.main, 0.8),
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
@@ -144,13 +148,18 @@ function Coworking() {
             <Grid container spacing={3} alignItems="center">
               <Grid item xs={12} md={8} lg={5}>
                 <MKTypography variant="h5" color="white" fontWeight="bold">
-                  For being a bright color. For standing out. But the time is now to be okay to be
-                  the greatest you.
+                  For being a bright color. For standing out. But the time is
+                  now to be okay to be the greatest you.
                 </MKTypography>
               </Grid>
               <Grid item xs={12} lg={6} sx={{ ml: "auto" }}>
                 <MKBox width="12rem" ml="auto">
-                  <MKButton variant="gradient" color="warning" fullWidth sx={{ boxShadow: "none" }}>
+                  <MKButton
+                    variant="gradient"
+                    color="warning"
+                    fullWidth
+                    sx={{ boxShadow: "none" }}
+                  >
                     start now
                   </MKButton>
                 </MKBox>

@@ -27,7 +27,14 @@ import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
-function ColoredBackgroundCard({ color = "info", image, label = "", title, description, action }) {
+function ColoredBackgroundCard({
+  color = "info",
+  image,
+  label = "",
+  title,
+  description,
+  action,
+}) {
   return (
     <Card
       sx={({
@@ -36,8 +43,14 @@ function ColoredBackgroundCard({ color = "info", image, label = "", title, descr
         borders: { borderRadius },
       }) => ({
         backgroundImage: `${linearGradient(
-          rgba(gradients[color] ? gradients[color].main : gradients.info.main, 0.9),
-          rgba(gradients[color] ? gradients[color].state : gradients.info.state, 0.9)
+          rgba(
+            gradients[color] ? gradients[color].main : gradients.info.main,
+            0.9
+          ),
+          rgba(
+            gradients[color] ? gradients[color].state : gradients.info.state,
+            0.9
+          )
         )}, url(${image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",

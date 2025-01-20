@@ -44,14 +44,18 @@ function MiniReviewCard({ color = "transparent", review, author }) {
             display="block"
             variant="button"
             fontWeight="bold"
-            color={color === "transparent" || color === "light" ? "dark" : "white"}
+            color={
+              color === "transparent" || color === "light" ? "dark" : "white"
+            }
           >
             {author.name}
           </MKTypography>
           <MKTypography
             variant="caption"
             fontWeight="regular"
-            color={color === "transparent" || color === "light" ? "text" : "white"}
+            color={
+              color === "transparent" || color === "light" ? "text" : "white"
+            }
           >
             {author.date}
           </MKTypography>

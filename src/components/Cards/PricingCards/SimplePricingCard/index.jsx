@@ -71,7 +71,8 @@ function SimplePricingCard({
       <MKTypography
         variant="button"
         color={
-          variant === "contained" || (variant === "gradient" && color === "light")
+          variant === "contained" ||
+          (variant === "gradient" && color === "light")
             ? "text"
             : "white"
         }
@@ -84,15 +85,25 @@ function SimplePricingCard({
 
   return (
     <Card sx={{ width: "100%", height: "100%", overflow: "hidden" }}>
-      <MKBox variant={variant} bgColor={variant === "gradient" ? color : "white"} height="100%">
+      <MKBox
+        variant={variant}
+        bgColor={variant === "gradient" ? color : "white"}
+        height="100%"
+      >
         <MKBox p={3} lineHeight={1}>
-          <MKTypography variant="h5" fontWeight="bold" color={titleColor} mb={0.5}>
+          <MKTypography
+            variant="h5"
+            fontWeight="bold"
+            color={titleColor}
+            mb={0.5}
+          >
             {title}
           </MKTypography>
           <MKTypography
             variant="button"
             color={
-              variant === "contained" || (variant === "gradient" && color === "light")
+              variant === "contained" ||
+              (variant === "gradient" && color === "light")
                 ? "text"
                 : "white"
             }
@@ -108,7 +119,8 @@ function SimplePricingCard({
                 component="small"
                 variant="h6"
                 color={
-                  variant === "contained" || (variant === "gradient" && color === "light")
+                  variant === "contained" ||
+                  (variant === "gradient" && color === "light")
                     ? "secondary"
                     : "white"
                 }
@@ -151,7 +163,10 @@ function SimplePricingCard({
           )}
         </MKBox>
         <Divider
-          light={variant === "gradient" || (variant === "gradient" && color === "light")}
+          light={
+            variant === "gradient" ||
+            (variant === "gradient" && color === "light")
+          }
           sx={{ my: 0, opacity: variant === "gradient" ? 0.5 : 0.25 }}
         />
         <MKBox p={3}>{renderSpecifications}</MKBox>

@@ -29,12 +29,13 @@ export default function VisualTeasers() {
             align="center"
             sx={{ ml: { xs: 0, lg: 3 }, mb: { xs: 4, md: 0 } }}
           >
-            <MKTypography variant="h4" sx={{py: 2}}>
+            <MKTypography variant="h4" sx={{ py: 2 }}>
               Discover your exclusive music insights, now!
             </MKTypography>
             <MKTypography variant="body1" color="text" mb={3}>
-              Easily find trends and explore your favourite sounds over the last week or
-              longer, using insights you couldn't find on Spotify Wrapped.
+              Easily find trends and explore your favourite sounds over the last
+              week or longer, using insights you couldn't find on Spotify
+              Wrapped.
             </MKTypography>
           </Grid>
           <Grid item xs={12} md={5} sx={{ ml: "auto" }}>
@@ -56,7 +57,7 @@ export default function VisualTeasers() {
             sx={{ ml: { xs: 0, lg: 3 }, mb: { xs: 4, md: 0 } }}
             align="center"
           >
-            <MKTypography variant="h4" sx={{py: 2}}>
+            <MKTypography variant="h4" sx={{ py: 2 }}>
               Do you like crowd-pleasers or underground sensations?
             </MKTypography>
             <MKTypography variant="body1" color="text" mb={3}>

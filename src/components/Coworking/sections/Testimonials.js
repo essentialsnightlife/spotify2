@@ -31,9 +31,21 @@ function Testimonials() {
     <MKBox component="section" position="relative" py={6}>
       <Container sx={{ maxWidth: "100% !important" }}>
         <Grid container item xs={10} sx={{ mx: "auto" }}>
-          <MKBox variant="gradient" bgColor="dark" borderRadius="lg" width="100%" py={6}>
+          <MKBox
+            variant="gradient"
+            bgColor="dark"
+            borderRadius="lg"
+            width="100%"
+            py={6}
+          >
             <Grid container>
-              <Grid item xs={12} md={6} xl={4} sx={{ position: "relative", px: 6 }}>
+              <Grid
+                item
+                xs={12}
+                md={6}
+                xl={4}
+                sx={{ position: "relative", px: 6 }}
+              >
                 <MKBox
                   component="img"
                   src={image}
@@ -66,10 +78,11 @@ function Testimonials() {
                   mb={2}
                   sx={{ fontSize: "1.125rem" }}
                 >
-                  Decisions: If you can&apos;t decide, the answer is no. If two equally difficult
-                  paths, choose the one more painful in the short term (pain avoidance is creating
-                  an illusion of equality). Choose the path that leaves you more equanimous in the
-                  long term.
+                  Decisions: If you can&apos;t decide, the answer is no. If two
+                  equally difficult paths, choose the one more painful in the
+                  short term (pain avoidance is creating an illusion of
+                  equality). Choose the path that leaves you more equanimous in
+                  the long term.
                 </MKTypography>
                 <MKTypography variant="button" fontWeight="bold" color="white">
                   Michael -{" "}
@@ -83,12 +96,27 @@ function Testimonials() {
                 item
                 xs={12}
                 xl={2}
-                sx={{ px: { xs: 6, xl: 0 }, my: { xs: 0, xl: "auto" }, lineHeight: 1 }}
+                sx={{
+                  px: { xs: 6, xl: 0 },
+                  my: { xs: 0, xl: "auto" },
+                  lineHeight: 1,
+                }}
               >
-                <MKTypography variant="h3" color="white" mt={{ xs: 6, xl: 0 }} mb={1}>
+                <MKTypography
+                  variant="h3"
+                  color="white"
+                  mt={{ xs: 6, xl: 0 }}
+                  mb={1}
+                >
                   1,679,700 +
                 </MKTypography>
-                <MKTypography component="p" variant="button" color="white" opacity={0.8} mb={2}>
+                <MKTypography
+                  component="p"
+                  variant="button"
+                  color="white"
+                  opacity={0.8}
+                  mb={2}
+                >
                   Developers and Companies around the world using our products.
                 </MKTypography>
                 <MKTypography
@@ -105,12 +133,14 @@ function Testimonials() {
                     "& .material-icons-round": {
                       fontSize: "1.125rem",
                       transform: `translateX(3px)`,
-                      transition: "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
+                      transition:
+                        "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
                     },
 
-                    "&:hover .material-icons-round, &:focus .material-icons-round": {
-                      transform: `translateX(6px)`,
-                    },
+                    "&:hover .material-icons-round, &:focus .material-icons-round":
+                      {
+                        transform: `translateX(6px)`,
+                      },
                   }}
                 >
                   See all products

@@ -27,7 +27,7 @@ import MKAvatar from "components/MKAvatar";
 function SimpleReviewCard({ image, name, username = "", review }) {
   return (
     <Card>
-      <MKBox display="grid" justifyContent="center" position="relative" >
+      <MKBox display="grid" justifyContent="center" position="relative">
         <MKAvatar
           src={image}
           alt={name}

@@ -23,7 +23,14 @@ import MKSocialButtonRoot from "components/MKSocialButton/MKSocialButtonRoot";
 
 const MKSocialButton = forwardRef(
   (
-    { color = "facebook", size = "medium", iconOnly = false, circular = false, children, ...rest },
+    {
+      color = "facebook",
+      size = "medium",
+      iconOnly = false,
+      circular = false,
+      children,
+      ...rest
+    },
     ref
   ) => (
     <MKSocialButtonRoot

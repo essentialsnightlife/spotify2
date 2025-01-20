@@ -11,44 +11,46 @@ import MenuItem from "@mui/material/MenuItem";
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 
-function MKDropdown({options}) {
-    const [dropdown, setDropdown] = useState(null);
+function MKDropdown({ options }) {
+  const [dropdown, setDropdown] = useState(null);
 
+  const openDropdown = ({ currentTarget }) => setDropdown(currentTarget);
+  const closeDropdown = () => setDropdown(null);
 
+  // Styles
+  const iconStyles = {
+    ml: 1,
+    fontWeight: "bold",
+    transition: "transform 200ms ease-in-out",
+  };
 
-    const openDropdown = ({ currentTarget }) => setDropdown(currentTarget);
-    const closeDropdown = () => setDropdown(null);
+  const dropdownIconStyles = {
+    transform: dropdown ? "rotate(180deg)" : "rotate(0)",
+    ...iconStyles,
+  };
 
-    // Styles
-    const iconStyles = {
-        ml: 1,
-        fontWeight: "bold",
-        transition: "transform 200ms ease-in-out",
-    };
-
-    const dropdownIconStyles = {
-        transform: dropdown ? "rotate(180deg)" : "rotate(0)",
-        ...iconStyles,
-    };
-
-    return (
-        <MKBox component="section" py={12}>
-            <Container>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} lg={6} textAlign="center">
-                        <MKButton variant="gradient" color="info" onClick={openDropdown}>
-                            Dropdown <Icon sx={dropdownIconStyles}>expand_more</Icon>
-                        </MKButton>
-                        <Menu anchorEl={dropdown} open={Boolean(dropdown)} onClose={closeDropdown}>
-                            <MenuItem onClick={closeDropdown}>Action</MenuItem>
-                            <MenuItem onClick={closeDropdown}>Another action</MenuItem>
-                            <MenuItem onClick={closeDropdown}>Something else here</MenuItem>
-                        </Menu>
-                    </Grid>
-                </Grid>
-            </Container>
-        </MKBox>
-    );
+  return (
+    <MKBox component="section" py={12}>
+      <Container>
+        <Grid container spacing={3}>
+          <Grid item xs={12} lg={6} textAlign="center">
+            <MKButton variant="gradient" color="info" onClick={openDropdown}>
+              Dropdown <Icon sx={dropdownIconStyles}>expand_more</Icon>
+            </MKButton>
+            <Menu
+              anchorEl={dropdown}
+              open={Boolean(dropdown)}
+              onClose={closeDropdown}
+            >
+              <MenuItem onClick={closeDropdown}>Action</MenuItem>
+              <MenuItem onClick={closeDropdown}>Another action</MenuItem>
+              <MenuItem onClick={closeDropdown}>Something else here</MenuItem>
+            </Menu>
+          </Grid>
+        </Grid>
+      </Container>
+    </MKBox>
+  );
 }
 
 export default MKDropdown;

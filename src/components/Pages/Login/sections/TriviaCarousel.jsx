@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 /*
 =========================================================
 * Material Kit 2 PRO React - v2.1.0
@@ -48,32 +48,37 @@ function TriviaCarousel() {
 
   const slides = [
     {
-      image:
-        "https://i.ibb.co/r2pM372/images.jpg",
-      label: "Top 8 most streamed albums of 2024 on Spotify are exclusively female artists",
+      image: "https://i.ibb.co/r2pM372/images.jpg",
+      label:
+        "Top 8 most streamed albums of 2024 on Spotify are exclusively female artists",
       title: "A Woman's World",
-      description: "This list features Taylor Swift (3 times!), Billie Eilish, Sabrina Carpenter, Karol G, Ariana Grande and SZA.",
+      description:
+        "This list features Taylor Swift (3 times!), Billie Eilish, Sabrina Carpenter, Karol G, Ariana Grande and SZA.",
     },
     {
       image:
         "https://i.ibb.co/3sptkQs/Kanye-West-Drake-6a6d0261d0264b1ab8639be9f82cdea5.jpg",
       label: "Drake && Kanye make top 3 in Spotify UK's most streamed artists",
       title: "Falling Off?",
-      description: "Despite their controversies and predicted downfalls, only Taylor Swift was streamed more on Spotify in the UK during 2024 than Drake(2nd) and Kanye West (3rd).",
+      description:
+        "Despite their controversies and predicted downfalls, only Taylor Swift was streamed more on Spotify in the UK during 2024 than Drake(2nd) and Kanye West (3rd).",
     },
     {
       image:
         "https://i.ibb.co/JdK5S0q/outfits-worn-by-sabrina-carpenter-for-the-opening-night-of-v0-iuc0bg9umsqd1.jpg",
-      label: "Sabrina Carpenter's track 'Espresso' is Spotify's most streamed song, globally",
+      label:
+        "Sabrina Carpenter's track 'Espresso' is Spotify's most streamed song, globally",
       title: "Espresso",
-      description: "This track got 1.6 billion streams, meaning American artist Sabrina Carpenter could potentially have made £5,685,561 from royalties.",
+      description:
+        "This track got 1.6 billion streams, meaning American artist Sabrina Carpenter could potentially have made £5,685,561 from royalties.",
     },
     {
-      image:
-        "https://i.ibb.co/myLkYFr/tsmed.jpg",
-      label: "Taylor Swift retains most streamed artist on Spotify status in 2024",
+      image: "https://i.ibb.co/myLkYFr/tsmed.jpg",
+      label:
+        "Taylor Swift retains most streamed artist on Spotify status in 2024",
       title: "Small Jumps",
-      description: "Taylor got more than 26.6 billion streams globally in 2024, a light increase from 26.1 billion for the previous year.",
+      description:
+        "Taylor got more than 26.6 billion streams globally in 2024, a light increase from 26.1 billion for the previous year.",
     },
   ];
 
@@ -110,7 +115,13 @@ function TriviaCarousel() {
   return (
     <MKBox component="section" bgColor={"light"} py={6} position="relative">
       <Container>
-        <MKTypography variant="h2" align="center" fontWeight="bold" sx={{mb: 4}} gutterBottom>
+        <MKTypography
+          variant="h2"
+          align="center"
+          fontWeight="bold"
+          sx={{ mb: 4 }}
+          gutterBottom
+        >
           Spotify 2024 Headlines
         </MKTypography>
         <Swiper
@@ -134,20 +145,33 @@ function TriviaCarousel() {
         >
           {slides.map(({ image, label, title, description }) => (
             <SwiperSlide key={label}>
-              <Grid container spacing={3} alignItems="center" sx={{ mb: { xs: 6, md: 0 } }}>
+              <Grid
+                container
+                spacing={3}
+                alignItems="center"
+                sx={{ mb: { xs: 6, md: 0 } }}
+              >
                 <Grid item xs={12} md={5} ml={{ xs: 0, lg: "auto" }}>
                   <MKBox p={2}>
-                    {image && <MKBox
-                      component="img"
-                      src={image}
-                      alt={title}
-                      width="100%"
-                      borderRadius="xl"
-                      maxHeight="37.5rem"
-                    />}
+                    {image && (
+                      <MKBox
+                        component="img"
+                        src={image}
+                        alt={title}
+                        width="100%"
+                        borderRadius="xl"
+                        maxHeight="37.5rem"
+                      />
+                    )}
                   </MKBox>
                 </Grid>
-                <Grid item xs={12} md={5} mr={{ xs: 0, lg: "auto" }} position="relative">
+                <Grid
+                  item
+                  xs={12}
+                  md={5}
+                  mr={{ xs: 0, lg: "auto" }}
+                  position="relative"
+                >
                   <MKTypography
                     component="h6"
                     variant="button"
@@ -192,7 +216,12 @@ function TriviaCarousel() {
             >
               <MKBox className="fas fa-chevron-left" />
             </MKTypography>
-            <MKTypography variant="h2" ref={navigationNextRef} color="dark" sx={navigationStyles}>
+            <MKTypography
+              variant="h2"
+              ref={navigationNextRef}
+              color="dark"
+              sx={navigationStyles}
+            >
               <MKBox className="fas fa-chevron-right" />
             </MKTypography>
           </MKBox>
@@ -206,7 +235,10 @@ function TriviaCarousel() {
                 fontWeight="bold"
                 pl={2}
                 textGradient
-                sx={{ fontFamily: ({ typography: { h1 } }) => h1.fontFamily, cursor: "pointer" }}
+                sx={{
+                  fontFamily: ({ typography: { h1 } }) => h1.fontFamily,
+                  cursor: "pointer",
+                }}
                 onClick={() => slideTo(index)}
               >
                 <MKBox component="span">{number}</MKBox>
