@@ -67,11 +67,11 @@ export default {
       link: "https://www.instagram.com/eds_d1/",
       title: "DJ Eds D1 Instagram",
     },
-    {
-      icon: <TikTokIcon />,
-      link: "https://www.tiktok.com/@dj_eds_d1",
-      title: "DJ Eds D1 TikTok",
-    },
+    // {
+    //   icon: <TikTokIcon />,
+    //   link: "https://www.tiktok.com/@dj_eds_d1",
+    //   title: "DJ Eds D1 TikTok",
+    // },
     {
       icon: <SoundCloudIcon />,
       link: "https://soundcloud.com/eds_d1",
