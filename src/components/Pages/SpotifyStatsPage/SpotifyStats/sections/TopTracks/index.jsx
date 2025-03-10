@@ -34,6 +34,9 @@ import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 // Images
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
 import { toPng } from "html-to-image";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import {formatSelectedPeriodLabel} from "../../../../../../utils";
 
 const TopTracksCard = ({ spotifyItem, number }) => {
   const { album, artists, images, name, popularity, external_urls } =
@@ -113,44 +116,42 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
   };
 
   return (
-    <MKBox
-      position="relative"
-      variant="gradient"
-      bgColor="light"
-      py={4}
-      mx={-2}
-    >
       <MKBox
-        component="img"
-        src={bgPattern}
-        alt="background-pattern"
-        position="absolute"
-        top={0}
-        left={0}
-        width="100%"
-        opacity={0.2}
-        display={{ xs: "none", md: "block" }}
-      />
-      <Container>
-        <Grid
-          container
-          justifyContent="center"
-          sx={{ pb: 5, position: "relative", zIndex: 3 }}
-        >
-          <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
-            <MKTypography variant="h2" color="dark" mb={4}>
+          position="relative"
+          variant="gradient"
+          bgColor="light"
+          py={4}
+          mx={-2}
+          sx={{
+            background: "linear-gradient(to left, #3E2723, #795548)", // Warm & rich
+          }}
+      >
+        <MKBox
+            component="img"
+            src={bgPattern}
+            alt="background-pattern"
+            position="absolute"
+            top={0}
+            left={0}
+            width="100%"
+            opacity={0.2}
+            display={{xs: "none", md: "block"}}
+        />
+        <Container maxWidth="md" sx={{position: "relative", zIndex: 3}}>
+          <Grid item xs={12} md={6} sx={{textAlign: "center"}}>
+            <MKTypography variant="h2" color="white" mb={4}>
               Your Top Tracks
             </MKTypography>
             <MKTypography
-              variant="body1"
-              color="dark"
-              fontWeight="light"
-              sx={{ mb: 2 }}
+                variant="body1"
+                color="white"
+                fontWeight="light"
+                sx={{mb: 2}}
             >
               Here are your top tracks on Spotify, again use the drop down to
               change the period.
             </MKTypography>
-            <MKTypography variant="body1" color="dark" fontWeight="light">
+            <MKTypography variant="body1" color="white" fontWeight="light">
               Popularity comes from Spotify's Popularity Index, a 0-to-100 score
               after ranking tracks.
             </MKTypography>
@@ -159,99 +160,110 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
                 <Grid container spacing={3} justifyContent="center">
                   <Grid item xs={12} md={6} textAlign="center">
                     <MKButton
-                      variant="gradient"
-                      color="primary"
-                      size="large"
-                      onClick={openDropdown}
-                      aria-controls={dropdown ? "periods-menu" : undefined}
-                      aria-haspopup="true"
-                      aria-expanded={Boolean(dropdown)}
+                        variant="gradient"
+                        color="primary"
+                        size="large"
+                        onClick={openDropdown}
+                        aria-controls={dropdown ? "periods-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={Boolean(dropdown)}
                     >
                       {selectedPeriodLabel}{" "}
                       <Icon sx={dropdownIconStyles}>expand_more</Icon>
                     </MKButton>
                     <Menu
-                      id="periods-tracks-menu"
-                      anchorEl={dropdown}
-                      open={Boolean(dropdown)}
-                      onClose={closeDropdown}
+                        id="periods-tracks-menu"
+                        anchorEl={dropdown}
+                        open={Boolean(dropdown)}
+                        onClose={closeDropdown}
                     >
                       {periods &&
-                        periods.map((period) => (
-                          <MenuItem
-                            key={period.queryParam}
-                            onClick={(e) => {
-                              handleSelection(e, period);
-                              closeDropdown();
-                            }}
-                            selected={selectedPeriod === period.queryParam}
-                          >
-                            {period.label}
-                          </MenuItem>
-                        ))}
+                          periods.map((period) => (
+                              <MenuItem
+                                  key={period.queryParam}
+                                  onClick={(e) => {
+                                    handleSelection(e, period);
+                                    closeDropdown();
+                                  }}
+                                  selected={selectedPeriod === period.queryParam}
+                              >
+                                {period.label}
+                              </MenuItem>
+                          ))}
                     </Menu>
                   </Grid>
                 </Grid>
               </Container>
             </MKBox>
           </Grid>
-        </Grid>
-        <div ref={ref}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-            }}
-          >
-            <MKBadge
-              badgeContent={`Top Tracks${
-                displayName ? " for " + displayName : ""
-              }${
-                selectedPeriod ? " || " + selectedPeriod : ""
-              } || ${new Date().toLocaleString("en-UK", {
-                weekday: "short",
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              })}`}
-              variant="contained"
-              color="primary"
-              size="lg"
-              container
-              sx={{ mb: 4 }}
-            />
+          <div ref={ref}>
+            <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+            >
+              <Box
+                  sx={{
+                    backgroundColor: "primary",
+                    color: "#FFFFFF",
+                    padding: "8px 16px",
+                    borderRadius: "8px",
+                    textAlign: "center",
+                    display: "inline-block",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    maxWidth: "100%",
+                  }}
+              >
+                <Typography variant="body1" sx={{display: "block"}}>
+                  <strong>
+                    {`Top Tracks${
+                        displayName ? " for " + displayName : ""}`
+                    }
+                  </strong>
+                </Typography>
+                <Typography variant="body2" sx={{opacity: 0.8}}>
+                  {`${formatSelectedPeriodLabel(selectedPeriod)} | ${new Date().toLocaleString("en-UK", {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}`}
+                </Typography>
+              </Box>
+            </div>
+            <Grid container spacing={3} pb={2}>
+              {topTracks &&
+                  topTracks?.map((track, index) => (
+                      <TopTracksCard
+                          spotifyItem={track}
+                          number={index + 1}
+                          key={track.id}
+                      />
+                  ))}
+            </Grid>
           </div>
-          <Grid container spacing={3}>
-            {topTracks &&
-              topTracks?.map((track, index) => (
-                <TopTracksCard
-                  spotifyItem={track}
-                  number={index + 1}
-                  key={track.id}
-                />
-              ))}
-          </Grid>
-        </div>
-        <Grid
-          container
-          sx={{ mb: 4, justifyContent: "center", alignItems: "center" }}
-        >
-          <MKButton
-            variant="gradient"
-            color="primary"
-            size="large"
-            onClick={onShareButtonClick}
-            aria-haspopup="true"
-            sx={{ mt: 4 }}
+          <Grid
+              container
+              sx={{mb: 4, justifyContent: "center", alignItems: "center"}}
           >
-            Share your Top Tracks
-            <Icon sx={dropdownIconStyles}>downloading</Icon>
-          </MKButton>
-        </Grid>
-      </Container>
-    </MKBox>
+            <MKButton
+                variant="gradient"
+                color="primary"
+                size="large"
+                onClick={onShareButtonClick}
+                aria-haspopup="true"
+                sx={{mt: 4}}
+            >
+              Share your Top Tracks
+              <Icon sx={dropdownIconStyles}>downloading</Icon>
+            </MKButton>
+          </Grid>
+        </Container>
+      </MKBox>
   );
 }
 

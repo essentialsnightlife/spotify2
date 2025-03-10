@@ -19,6 +19,7 @@ import PropTypes from "prop-types";
 // @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
+import Icon from "@mui/material/Icon";
 
 // Material Kit 2 PRO React components
 import MKBox from "components/MKBox";
@@ -35,11 +36,22 @@ const SpotifyPlayButton = ({ href }) => {
       target="_blank"
       rel="noreferrer"
       variant="contained"
-      color="success"
-      size="small"
-      sx={{ mt: 2 }}
+      color="primary"
+      size="large"
+
+      sx={{
+        mt: 2,
+        justifyContent: "flex-start",
+        paddingLeft: "8px",
+        paddingRight: "16px",
+        "&:hover": {
+          backgroundColor: "#8B0000",
+          color: "#5A5A5A",
+        },
+    }}
     >
-      Listen on Spotify
+      <Icon sx={{ mr: 1 }}>play_circle_outline_icon</Icon>
+      {'  '}Listen now
     </MKButton>
   );
 };
@@ -47,8 +59,8 @@ const SpotifyPlayButton = ({ href }) => {
 function HorizontalTeamCard({ image, name, position, description, href }) {
   return (
     <Card sx={{ mt: 3 }}>
-      <Grid container>
-        <Grid item xs={12} md={6} lg={4} sx={{ mt: -6 }}>
+      <Grid container sx={{ height: { lg: "17rem" } }}>
+        <Grid item xs={12} md={6} lg={4} sx={{ mt: 0 }}>
           <MKBox width="100%" pt={2} pb={1} px={2}>
             <MKBox
               component="img"
@@ -70,12 +82,12 @@ function HorizontalTeamCard({ image, name, position, description, href }) {
             />
           </MKBox>
         </Grid>
-        <Grid item xs={12} md={6} lg={8} sx={{ my: "auto" }}>
+        <Grid item xs={12} md={6} lg={8} sx={{ my: 2 }}>
           <MKBox
             pt={{ xs: 1, lg: 2.5 }}
             pb={2.5}
             pr={4}
-            pl={{ xs: 4, lg: 1 }}
+            pl={{ xs: 1, lg: 1 }}
             lineHeight={1}
           >
             <MKTypography variant="h5">{name}</MKTypography>
