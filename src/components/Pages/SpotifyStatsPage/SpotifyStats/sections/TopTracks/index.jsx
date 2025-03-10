@@ -33,7 +33,6 @@ import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 
 // Images
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
-import { SpotifyAttribution } from "components/SpotifyAttribution";
 import { toPng } from "html-to-image";
 
 const TopTracksCard = ({ spotifyItem, number }) => {

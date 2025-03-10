@@ -148,9 +148,8 @@ function DefaultNavbar({
                 >
                   {cols.map((col, index) => (
                     <Fragment key={col.name}>
-                      <MKTypography
+                      <MKButton
                         display="block"
-                        variant="button"
                         fontWeight="bold"
                         textTransform="capitalize"
                         py={1}
@@ -158,7 +157,7 @@ function DefaultNavbar({
                         mt={index !== 0 ? 2 : 0}
                       >
                         {col.name}
-                      </MKTypography>
+                      </MKButton>
                       {col.collapse.map((item) => (
                         <MKTypography
                           key={item.name}

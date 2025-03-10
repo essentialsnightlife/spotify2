@@ -33,7 +33,6 @@ import React, { useRef, useState } from "react";
 import MKButton from "components/MKButton/index.jsx";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { SpotifyAttribution } from "components/SpotifyAttribution";
 
 const TopArtistsCard = ({ spotifyItem, number }) => {
   const { genres, images, name, popularity, external_urls } = spotifyItem;
@@ -43,18 +42,18 @@ const TopArtistsCard = ({ spotifyItem, number }) => {
 
   return (
     <Grid item xs={12} lg={6}>
-      <MKBox mb={1}>
-        <HorizontalTeamCard
-          image={images[0]?.url}
-          name={name}
-          position={{
-            color: "primary",
-            label: "#" + number + " | Popularity: " + popularity,
-          }}
-          description={formattedGenres}
-          href={href}
-        />
-      </MKBox>
+        <MKBox mb={1}>
+          <HorizontalTeamCard
+            image={images[0]?.url}
+            name={name}
+            position={{
+              color: "primary",
+              label: "#" + number + " | Popularity: " + popularity,
+            }}
+            description={formattedGenres}
+            href={href}
+          />
+        </MKBox>
     </Grid>
   );
 };
@@ -114,12 +113,20 @@ function TopArtists({ topArtists, periods, displayName, onChange }) {
 
   return (
     <MKBox
-      position="relative"
-      variant="gradient"
-      bgColor="dark"
-      mt={6}
-      py={4}
-      mx={-2}
+        position="relative"
+        variant="gradient"
+        bgColor="dark"
+        mt={6}
+        py={6}
+        px={3}
+        mx={-2}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          background: "linear-gradient(to right, #141e30, #243b55)", // Modern gradient
+        }}
     >
       <MKBox
         component="img"
@@ -132,14 +139,9 @@ function TopArtists({ topArtists, periods, displayName, onChange }) {
         opacity={0.2}
         display={{ xs: "none", md: "block" }}
       />
-      <Container>
-        <Grid
-          container
-          justifyContent="center"
-          sx={{ pt: 8, pb: 5, position: "relative", zIndex: 3 }}
-        >
-          <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
-            <MKTypography variant="h2" color="white" mb={4}>
+      <Container maxWidth="md" sx={{ position: "relative", zIndex: 3 }}>
+        <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
+            <MKTypography variant="h2" color="white" mt={6} mb={4}>
               Your Top Artists
             </MKTypography>
             <MKTypography
@@ -198,7 +200,6 @@ function TopArtists({ topArtists, periods, displayName, onChange }) {
               </Container>
             </MKBox>
           </Grid>
-        </Grid>
         <>
           <div ref={ref}>
             <div
