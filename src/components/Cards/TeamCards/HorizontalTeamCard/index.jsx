@@ -87,7 +87,7 @@ function HorizontalTeamCard({ image, name, position, description, href }) {
             pt={{ xs: 1, lg: 2.5 }}
             pb={2.5}
             pr={4}
-            pl={{ xs: 1, lg: 1 }}
+            pl={{ xs: 2.5, lg: 1 }}
             lineHeight={1}
           >
             <MKTypography variant="h5">{name}</MKTypography>
