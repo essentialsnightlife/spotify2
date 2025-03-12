@@ -36,7 +36,7 @@ import bgPattern from "assets/images/shapes/pattern-lines.svg";
 import { toPng } from "html-to-image";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import {formatSelectedPeriodLabel} from "../../../../../../utils";
+import {formatSelectedPeriodLabel, onShareButtonClick} from "../../../../../../utils";
 
 const TopTracksCard = ({ spotifyItem, number }) => {
   const { album, artists, images, name, popularity, external_urls } =
@@ -80,28 +80,6 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
     setSelectedPeriod(period.queryParam);
     setSelectedPeriodLabel(period.label);
     onChange(period.queryParam, "tracks");
-  };
-
-  const onShareButtonClick = async () => {
-    if (!ref.current) return;
-
-    try {
-      const dataUrl = await toPng(ref.current, { cacheBust: true });
-      const link = document.createElement("a");
-      link.download = `my-top-tracks-${new Date().toLocaleString("en-UK", {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      })}.png`;
-      link.href = dataUrl;
-      link.click();
-    } catch (err) {
-      alert(
-        "Error generating image. Please try again later or email admin if it persists."
-      );
-      console.error("Error generating image:", err);
-    }
   };
 
   const iconStyles = {
@@ -254,7 +232,7 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
                 variant="gradient"
                 color="primary"
                 size="large"
-                onClick={onShareButtonClick}
+                onClick={() => onShareButtonClick("tracks", displayName)}
                 aria-haspopup="true"
                 sx={{mt: 4}}
             >

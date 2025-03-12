@@ -35,14 +35,6 @@ import footerRoutes from "@/footer.routes";
 
 import { logout } from "../../../../utils";
 
-const getProfileImage = (profile) => {
-  if (profile.images[0]) {
-    const profileImage = new Image(200, 200);
-    profileImage.src = profile.images[0].url;
-    return profileImage;
-  }
-};
-
 const periods = [
   { queryParam: "short_term", label: "Short Term" },
   {
@@ -52,8 +44,6 @@ const periods = [
   },
   { queryParam: "long_term", label: "Long Term" },
 ];
-
-
 
 export function SpotifyStats({
   profile,
