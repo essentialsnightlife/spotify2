@@ -1,3 +1,5 @@
+import {sessionCookie} from "./constants";
+
 export function capitalizeFirstLetters(str: string) {
     return str
         .split(' ')
@@ -10,4 +12,10 @@ export function formatSelectedPeriodLabel(selectedPeriod: string) {
         .split("_")
         .map(word => capitalizeFirstLetters(word))
         .join(" ");
+}
+
+export function logout() {
+    document.cookie = `${sessionCookie}=; max-age=0; Secure;`;
+    localStorage.removeItem("verifier");
+    document.location.reload();
 }

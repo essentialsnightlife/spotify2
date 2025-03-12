@@ -33,8 +33,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 // Routes
 import footerRoutes from "@/footer.routes";
 
-// Images
-import { sessionCookie } from "*/constants";
+import { logout } from "../../../../utils";
 
 const getProfileImage = (profile) => {
   if (profile.images[0]) {
@@ -54,11 +53,7 @@ const periods = [
   { queryParam: "long_term", label: "Long Term" },
 ];
 
-export function logout() {
-  document.cookie = `${sessionCookie}=; max-age=0; Secure;`;
-  localStorage.removeItem("verifier");
-  document.location.reload();
-}
+
 
 export function SpotifyStats({
   profile,
