@@ -44,10 +44,10 @@ const getProfileImage = (profile) => {
 };
 
 const periods = [
-  { queryParam: "short_term", label: "Very Recent" },
+  { queryParam: "short_term", label: "Short Term" },
   {
     queryParam: "medium_term",
-    label: "Recent",
+    label: "Medium Term",
     default: true,
   },
   { queryParam: "long_term", label: "Long Term" },
