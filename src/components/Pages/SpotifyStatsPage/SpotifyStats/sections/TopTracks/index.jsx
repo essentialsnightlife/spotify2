@@ -259,7 +259,7 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
                   })}`}
               </h4>
               <h4 style={{color: "white", textAlign: "center", marginBottom: "10px"}}>
-                  www.addUrlhere.com
+                  www.yourMusicStats.com
               </h4>
               {topTracks && (<div style={{
                   display: "grid",

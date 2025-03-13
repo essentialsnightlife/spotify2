@@ -265,7 +265,7 @@ function TopArtists({ topArtists, periods, displayName, onChange }) {
                   })}`}
               </h4>
               <h4 style={{color: "white", textAlign: "center", marginBottom: "10px"}}>
-                  www.addUrlhere.com
+                  www.yourMusicStats.com
               </h4>
               {topArtists && (<div style={{
                   display: "grid",
