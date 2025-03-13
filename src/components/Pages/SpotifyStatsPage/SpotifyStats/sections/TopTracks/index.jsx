@@ -33,7 +33,6 @@ import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 
 // Images
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
-import { toPng } from "html-to-image";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {formatSelectedPeriodLabel, onShareButtonClick} from "../../../../../../utils";

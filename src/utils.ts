@@ -1,36 +1,38 @@
 import { sessionCookie } from "./constants";
-import { toPng } from "html-to-image";
+import { domToPng } from 'modern-screenshot'
 
 
-export const onShareButtonClick = async (type= "artists", displayName="") => {
-    const shareDiv =  type === "artists" ? document.getElementById("shareTopArtists") : document.getElementById("shareTopTracks");
+export const onShareButtonClick = async (type = "artists", displayName = "") => {
+    const shareDiv = type === "artists"
+        ? document.getElementById("shareTopArtists")
+        : document.getElementById("shareTopTracks");
     if (!shareDiv) return;
 
-    shareDiv.setAttribute("share-type", type)
+    shareDiv.setAttribute("share-type", type);
     shareDiv.setAttribute("display-name", displayName);
 
     try {
         // Make div temporarily visible
         shareDiv.style.display = "block";
 
-        const dataUrl = await new Promise((resolve) => {
-            setTimeout(async () => {
-                resolve(await toPng(shareDiv, { pixelRatio: 2, useCORS: true }));
-            }, 1000);
-        });
+        // Capture the image
+        const dataUrl = await domToPng(shareDiv, { pixelRatio: 2, useCORS: true });
 
         // Hide again after capturing
         shareDiv.style.display = "none";
 
         // Create download link
-        const link = document.createElement("a");
-        link.download = `${displayName.replace(" ", "-") + "-" || ""}top-${type}-${new Date().toLocaleString("en-UK", {
+        const formattedDisplayName = displayName.replace(/\s+/g, "-") || "";
+        const fileName = `${formattedDisplayName + "-" || ""}top-${type}-${new Date().toLocaleString("en-UK", {
             weekday: "short",
             month: "short",
             day: "numeric",
             year: "numeric",
         })}.png`;
-        link.href = dataUrl as string;
+
+        const link = document.createElement("a");
+        link.download = fileName;
+        link.href = dataUrl;
         link.click();
     } catch (err) {
         alert("Error generating image. Please try again later.");

@@ -25,10 +25,7 @@ import MKTypography from "components/MKTypography";
 // Material Kit 2 PRO React examples
 import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 
-// Images
-import { toPng } from "html-to-image";
 import bgPattern from "assets/images/shapes/pattern-lines.svg";
-import MKBadge from "components/MKBadge/index.jsx";
 import React, { useRef, useState } from "react";
 import MKButton from "components/MKButton/index.jsx";
 import Menu from "@mui/material/Menu";
