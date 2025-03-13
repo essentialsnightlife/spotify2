@@ -249,25 +249,16 @@ function TopArtists({ topArtists, periods, displayName, onChange }) {
                   </Grid>
               </>
           </Container>
-          <div id="shareCanvas" style={{
+          <div id="shareTopArtists" style={{
               display: "none",
               width: "800px",
               padding: "20px",
               backgroundColor: "#1a1a1a",
               borderRadius: "10px"
           }}>
-              <h2 id="shareCanvasTitle" style={{color: "white", textAlign: "center", marginBottom: "5px"}}>
-                  {`Top ${document.getElementById("shareCanvas")?.getAttribute("share-type") === "tracks" ? "Tracks" : "Artists"}${
-                      document.getElementById("shareCanvas")?.getAttribute("display-name")
-                          && ` for ${document.getElementById("shareCanvas")?.getAttribute("display-name")}`
-                  }`}
+              <h2 style={{color: "white", textAlign: "center", marginBottom: "5px"}}>
+                  {`Top Artists${displayName ? ` for ${displayName}` : ""}`}
               </h2>
-              <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "10px"}}>
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg"
-                       alt="Spotify Logo"
-                       style={{height: "28px", filter: "brightness(0.9)"}}
-                  />
-              </div>
               <h4 style={{color: "indianred", textAlign: "center", marginBottom: "10px"}}>
                   {`${formatSelectedPeriodLabel(selectedPeriod)} | ${new Date().toLocaleString("en-UK", {
                       weekday: "short",
@@ -300,9 +291,19 @@ function TopArtists({ topArtists, periods, displayName, onChange }) {
                           <p style={{color: "white", fontSize: "22px", fontWeight: "bold"}}>
                               #{index + 1} - {artist.name}
                           </p>
-                          <p style={{color: "#aaa", fontSize: "14px"}}>
+                          <p style={{color: "#aaa", fontSize: "14px", fontStyle: "italic", marginBottom: "3px"}}>
                               Popularity: {artist.popularity}
                           </p>
+                          <div style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                          }}>
+                              <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg"
+                                   alt="Spotify Logo"
+                                   style={{height: "20px", filter: "brightness(0.9)"}}
+                              />
+                          </div>
                       </div>
                   ))}
               </div>)}

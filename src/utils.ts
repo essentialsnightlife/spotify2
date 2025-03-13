@@ -3,30 +3,24 @@ import {toPng} from "html-to-image";
 
 
 export const onShareButtonClick = async (type= "artists", displayName="") => {
-    const shareDiv = document.getElementById("shareCanvas");
+    const shareDiv =  type === "artists" ? document.getElementById("shareTopArtists") : document.getElementById("shareTopTracks");
     if (!shareDiv) return;
 
     shareDiv.setAttribute("share-type", type)
     shareDiv.setAttribute("display-name", displayName);
 
     try {
-        // Make it temporarily visible
+        // Make div temporarily visible
         shareDiv.style.display = "block";
 
-        const titleElement = document.getElementById("shareCanvasTitle");
-        if (titleElement) {
-            titleElement.innerText = `Top ${type === "tracks" ? "Tracks" : "Artists"}${displayName ? ` for ${displayName}` : ""}`;
-        }
-
-        // Generate image
-        const dataUrl = await toPng(shareDiv, { cacheBust: true, pixelRatio: 2 });
+        const dataUrl = await toPng(shareDiv, { pixelRatio: 2 });
 
         // Hide again after capturing
         shareDiv.style.display = "none";
 
         // Create download link
         const link = document.createElement("a");
-        link.download = `my-top-artists-${new Date().toLocaleString("en-UK", {
+        link.download = `${displayName.replace(" ", "-") + "-" || ""}top-${type}-${new Date().toLocaleString("en-UK", {
             weekday: "short",
             month: "short",
             day: "numeric",
