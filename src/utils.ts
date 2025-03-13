@@ -1,5 +1,5 @@
-import {sessionCookie} from "./constants";
-import {toPng} from "html-to-image";
+import { sessionCookie } from "./constants";
+import { toPng } from "html-to-image";
 
 
 export const onShareButtonClick = async (type= "artists", displayName="") => {
@@ -13,7 +13,11 @@ export const onShareButtonClick = async (type= "artists", displayName="") => {
         // Make div temporarily visible
         shareDiv.style.display = "block";
 
-        const dataUrl = await toPng(shareDiv, { pixelRatio: 2 });
+        const dataUrl = await new Promise((resolve) => {
+            setTimeout(async () => {
+                resolve(await toPng(shareDiv, { pixelRatio: 2, useCORS: true }));
+            }, 1000);
+        });
 
         // Hide again after capturing
         shareDiv.style.display = "none";
@@ -26,7 +30,7 @@ export const onShareButtonClick = async (type= "artists", displayName="") => {
             day: "numeric",
             year: "numeric",
         })}.png`;
-        link.href = dataUrl;
+        link.href = dataUrl as string;
         link.click();
     } catch (err) {
         alert("Error generating image. Please try again later.");
