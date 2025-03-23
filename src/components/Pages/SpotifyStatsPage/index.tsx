@@ -30,9 +30,6 @@ function SpotifyStatsPage() {
         setTopTracks(trackResponse.items);
     } catch (error) {
       console.error("Error fetching profile data:", error);
-      alert(
-        "Error fetching your data, please login again."
-      );
     } finally {
       setLoading(false);
     }

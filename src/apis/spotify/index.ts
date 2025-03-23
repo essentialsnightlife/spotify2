@@ -3,7 +3,7 @@ import {
   SpotifyTopArtistsTracksResponse,
   UserProfile,
 } from "../../types";
-import {getCookie} from "../../utils.ts";
+import { getCookie, setCookie } from "../../utils.ts";
 
 const domain =
     import.meta.env.DOMAIN || window.location.origin || "http://localhost:8888";
@@ -84,46 +84,68 @@ export async function getAccessTokens(authCode: string):Promise<{access_token: s
   return { access_token, refresh_token };
 }
 
-export async function fetchProfile(): Promise<UserProfile> {
-  const result = await fetch("https://api.spotify.com/v1/me", {
-    method: "GET",
-    headers: { Authorization: `Bearer ${getCookie("session")}` },
+export async function getRefreshToken() {
+  const refreshToken = getCookie("refresh");
+  const result = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+      client_id: clientId,
+    }),
   });
 
-  if (!result.ok) {
-    if (result.status === 401) {
-      throw new Error("Unauthorized");
-    }
-    throw new Error("Failed to fetch user top items");
-  }
-
-  return result.json();
+  const { access_token, refresh_token } = await result.json();
+  return { access_token, refresh_token };
 }
 
-export async function fetchUserTopItems(
-  { type, time_range = "medium_term", limit }: FetchUserTopItemsParams,
-): Promise<SpotifyTopArtistsTracksResponse> {
-  const queryParams = new URLSearchParams({
-    time_range,
-    ...(limit && { limit: limit.toString() }),
-  }).toString();
+export async function spotifyFetcher<T>(
+    input: RequestInfo,
+    options: RequestInit = {},
+    hasRetried = false
+): Promise<T> {
+  const accessToken = getCookie("session");
+  const refreshToken = getCookie("refresh");
 
-  const result = await fetch(
-    `https://api.spotify.com/v1/me/top/${type}?${queryParams}`,
-    {
-      method: "GET",
+  async function fetchWithToken(accessToken: string) {
+    const response = await fetch(input, {
+      ...options,
       headers: {
-        Authorization: `Bearer ${getCookie("session")}`,
+        ...options.headers,
+        Authorization: `Bearer ${accessToken}`,
       },
-    }
-  );
+    });
 
-  if (!result.ok) {
-    if (result.status === 401) {
-      throw new Error("Unauthorized");
+    if (response.ok) {
+      return response.json();
+    } else if (response.status === 401 && refreshToken && !hasRetried) {
+      // Try refreshing token
+      const newTokens = await getRefreshToken();
+      if (newTokens) {
+        setCookie("session", newTokens.access_token);
+        setCookie("refresh", newTokens.refresh_token);
+        return spotifyFetcher(input, options, true); // Retry original call
+      }
     }
-    throw new Error("Failed to fetch user top items");
+
+    throw new Error(`Spotify API error: ${response.status}`);
   }
 
-  return result.json();
+  return fetchWithToken(accessToken);
+}
+
+export const fetchProfile = () => {
+  return spotifyFetcher("https://api.spotify.com/v1/me", { method: "GET" });
+};
+
+export function fetchUserTopItems(
+  { type, time_range = "medium_term", limit }: FetchUserTopItemsParams,
+): Promise<SpotifyTopArtistsTracksResponse> {
+  return spotifyFetcher(
+    `https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}&limit=${limit}`,
+    { method: "GET" },
+  );
 }
