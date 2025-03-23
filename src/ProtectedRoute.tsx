@@ -1,19 +1,13 @@
+import React from "react";
 import { Navigate } from "react-router-dom";
-import { getCookie } from "@/helpers";
-import { sessionCookie } from "*/constants";
+import { useAuth } from "@/hooks/useAuth";
 
-interface ProtectedRouteProps {
-  children: JSX.Element;
-}
+function ProtectedRoute({ children }: { children: React.ReactElement }) {
+    const { isAuthenticated, isReady } = useAuth();
+    if (!isReady) return null;
+    if (!isAuthenticated) return <Navigate to="/login" replace />;
 
-function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const accessToken = getCookie(sessionCookie);
-
-  if (!accessToken) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
+    return children;
 }
 
 export default ProtectedRoute;

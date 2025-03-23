@@ -3,9 +3,12 @@ import {
   SpotifyTopArtistsTracksResponse,
   UserProfile,
 } from "../../types";
-import { appScope, redirectUri, sessionCookie } from "../../../src/constants";
-import { getCookie } from "../../helpers";
+import {getCookie} from "../../utils.ts";
 
+const domain =
+    import.meta.env.DOMAIN || window.location.origin || "http://localhost:8888";
+export const redirectUri = `${domain}/callback`;
+export const appScope = "user-read-private user-read-email user-top-read";
 export const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 export const clientSecret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 
@@ -57,7 +60,7 @@ async function generateCodeChallenge(codeVerifier: string) {
     .replace(/=+$/, "");
 }
 
-export async function getAccessToken(authCode: string) {
+export async function getAccessTokens(authCode: string):Promise<{access_token: string, refresh_token: string}> {
   const verifier = localStorage.getItem("verifier");
 
   const params = new URLSearchParams();
@@ -77,14 +80,14 @@ export async function getAccessToken(authCode: string) {
     body: params,
   });
 
-  const { access_token } = await result.json();
-  return access_token;
+  const { access_token, refresh_token } = await result.json();
+  return { access_token, refresh_token };
 }
 
 export async function fetchProfile(): Promise<UserProfile> {
   const result = await fetch("https://api.spotify.com/v1/me", {
     method: "GET",
-    headers: { Authorization: `Bearer ${getCookie(sessionCookie)}` },
+    headers: { Authorization: `Bearer ${getCookie("session")}` },
   });
 
   if (!result.ok) {
@@ -99,7 +102,6 @@ export async function fetchProfile(): Promise<UserProfile> {
 
 export async function fetchUserTopItems(
   { type, time_range = "medium_term", limit }: FetchUserTopItemsParams,
-  accessToken: string | null
 ): Promise<SpotifyTopArtistsTracksResponse> {
   const queryParams = new URLSearchParams({
     time_range,
@@ -111,7 +113,7 @@ export async function fetchUserTopItems(
     {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${accessToken || getCookie(sessionCookie)}`,
+        Authorization: `Bearer ${getCookie("session")}`,
       },
     }
   );

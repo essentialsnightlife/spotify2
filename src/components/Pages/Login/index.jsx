@@ -36,11 +36,14 @@ import footerRoutes from "@/footer.routes";
 // Images
 import vibrantMusicFestival from "/vibrantMusicFestival.jpg";
 import { SpotifyAttribution } from "components/SpotifyAttribution/index.jsx";
+import {useAuth} from "@/hooks/useAuth";
+import {Navigate} from "react-router-dom";
 
 function LoginPage({ onClick }) {
   const [brandText, setBrandText] = useState(
     "Your Spotify Stats | Free from DJ Eds D1"
   );
+  const { isAuthenticated, isReady } = useAuth();
 
   // use this to change brand text
   useEffect(() => {
@@ -65,6 +68,11 @@ function LoginPage({ onClick }) {
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", displayMobileNavbar);
   }, []);
+
+  if (!isReady) return null;
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <>

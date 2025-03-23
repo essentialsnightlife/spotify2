@@ -1,6 +1,4 @@
-import { sessionCookie } from "./constants";
 import { domToPng } from 'modern-screenshot'
-
 
 export const onShareButtonClick = async (type = "artists", displayName = "") => {
     const shareDiv = type === "artists"
@@ -55,7 +53,19 @@ export function formatSelectedPeriodLabel(selectedPeriod: string) {
 }
 
 export function logout() {
-    document.cookie = `${sessionCookie}=; max-age=0; Secure;`;
+    document.cookie = `session=; max-age=0; Secure;`;
     localStorage.removeItem("verifier");
     document.location.reload();
+}
+
+export function getCookie(name: string): string | null {
+    const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${name}=`))
+        ?.split("=")[1];
+    return cookieValue || null;
+}
+
+export function setCookie(name: string, token: string) {
+    document.cookie = `${name}=${token}; max-age=3600; path=/; Secure;`;
 }
