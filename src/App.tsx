@@ -6,6 +6,7 @@ import Login from "@/components/Pages/Login";
 import SpotifyStatsPage from "@/components/Pages/SpotifyStatsPage";
 import EULA from "components/Pages/Legal/EULA";
 import PrivacyPolicy from "components/Pages/Legal/PrivacyPolicy";
+import PageNotFoundPage from "components/Pages/PageNotFoundPage";
 
 import {
   redirectToAuthCodeFlow,
@@ -35,7 +36,7 @@ function App() {
                 <Route path="eula" element={<EULA />} />
                 <Route path="privacy" element={<PrivacyPolicy />} />
               </Route>
-              <Route path="*" element={<>404 - Page Not Found</>} />
+              <Route path="*" element={<PageNotFoundPage />} />
           </Routes>
     </AuthProvider>
   );
