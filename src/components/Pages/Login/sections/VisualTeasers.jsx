@@ -5,8 +5,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import MKTypography from "components/MKTypography/index.jsx";
 
-import artistView from "/screenshots/SpotifyStatsArtistsDemo.png";
-import tracksView from "/screenshots/SpotifyStatsTracksDemo.png";
+import jamieXXCard from "/screenshots/jamieXxTrack.png";
+import futureCard from "/screenshots/futureCard.png";
 
 export default function VisualTeasers() {
   return (
@@ -42,7 +42,7 @@ export default function VisualTeasers() {
             <MKBox position="relative">
               <MKBox
                 component="img"
-                src={artistView}
+                src={futureCard}
                 alt="macbook"
                 width="100%"
               />
@@ -69,7 +69,7 @@ export default function VisualTeasers() {
             <MKBox position="relative">
               <MKBox
                 component="img"
-                src={tracksView}
+                src={jamieXXCard}
                 alt="macbook"
                 width="100%"
               />
