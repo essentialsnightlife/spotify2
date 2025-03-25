@@ -10,7 +10,7 @@ import tracksView from "/screenshots/SpotifyStatsTracksDemo.png";
 
 export default function VisualTeasers() {
   return (
-    <MKBox component="section" my={6}>
+    <MKBox component="section" mt={6} mb={3}>
       <Container>
         <MKTypography
           variant="h2"
@@ -29,7 +29,7 @@ export default function VisualTeasers() {
             align="center"
             sx={{ ml: { xs: 0, lg: 3 }, mb: { xs: 4, md: 0 } }}
           >
-            <MKTypography variant="h4" sx={{ py: 2 }}>
+            <MKTypography mb={2} sx={{ fontSize: { md: "h6", lg: "h4" }}}>
               Discover your exclusive music insights, now!
             </MKTypography>
             <MKTypography variant="body1" color="text" mb={3}>
@@ -57,7 +57,7 @@ export default function VisualTeasers() {
             sx={{ ml: { xs: 0, lg: 3 }, mb: { xs: 4, md: 0 } }}
             align="center"
           >
-            <MKTypography variant="h4" sx={{ py: 2 }}>
+            <MKTypography mb={2} sx={{ fontSize: { md: "h6", lg: "h4" }}}>
               Do you like crowd-pleasers or underground sensations?
             </MKTypography>
             <MKTypography variant="body1" color="text" mb={3}>

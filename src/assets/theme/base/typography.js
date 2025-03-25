@@ -24,6 +24,7 @@ import colors from "assets/theme/base/colors";
 
 // Material Kit 2 PRO React Helper Functions
 import pxToRem from "assets/theme/functions/pxToRem";
+import breakpoints from "assets/theme/base/breakpoints.js";
 
 const { dark } = colors;
 
@@ -45,6 +46,14 @@ const baseProperties = {
   fontSizeXL: pxToRem(20),
   fontSize2XL: pxToRem(24),
   fontSize3XL: pxToRem(30),
+  fontSizeXXSDesktop: pxToRem(12),
+  fontSizeXSDesktop: pxToRem(14),
+  fontSizeSMDesktop: pxToRem(16),
+  fontSizeMDDesktop: pxToRem(18),
+  fontSizeLGDesktop: pxToRem(20),
+  fontSizeXLDesktop: pxToRem(22),
+  fontSize2XLDesktop: pxToRem(26),
+  fontSize3XLDesktop: pxToRem(32),
 };
 
 const baseHeadingProperties = {
@@ -72,6 +81,9 @@ const typography = {
     fontSize: pxToRem(48),
     lineHeight: 1.25,
     ...baseHeadingProperties,
+    [`@media (min-width: ${breakpoints.values.lg}px)`]: {
+      fontSize: pxToRem(56),
+    },
   },
 
   h2: {
@@ -79,6 +91,9 @@ const typography = {
     fontSize: pxToRem(36),
     lineHeight: 1.3,
     ...baseHeadingProperties,
+    [`@media (min-width: ${breakpoints.values.lg}px)`]: {
+      fontSize: pxToRem(48),
+    },
   },
 
   h3: {
@@ -86,6 +101,9 @@ const typography = {
     fontSize: pxToRem(30),
     lineHeight: 1.375,
     ...baseHeadingProperties,
+    [`@media (min-width: ${breakpoints.values.lg}px)`]: {
+      fontSize: pxToRem(40),
+    },
   },
 
   h4: {
@@ -128,13 +146,20 @@ const typography = {
     fontSize: baseProperties.fontSizeXL,
     fontWeight: baseProperties.fontWeightRegular,
     lineHeight: 1.625,
+    [`@media (min-width: ${breakpoints.values.lg}px)`]: {
+      fontSize: pxToRem(28),
+      // fontWeight: baseProperties.fontWeightMedium,
+    },
   },
 
   body2: {
     fontFamily: baseProperties.fontFamily,
     fontSize: baseProperties.fontSizeMD,
-    fontWeight: baseProperties.fontWeightLight,
+    fontWeight: baseProperties.fontWeightMedium,
     lineHeight: 1.6,
+    [`@media (min-width: ${breakpoints.values.lg}px)`]: {
+      fontSize: pxToRem(24),
+    },
   },
 
   button: {
@@ -143,6 +168,11 @@ const typography = {
     fontWeight: baseProperties.fontWeightLight,
     lineHeight: 1.5,
     textTransform: "uppercase",
+    [`@media (min-width: ${breakpoints.values.lg}px)`]: {
+      fontSize: pxToRem(24),
+      padding: `${pxToRem(12)} ${pxToRem(24)}`,
+    },
+
   },
 
   caption: {

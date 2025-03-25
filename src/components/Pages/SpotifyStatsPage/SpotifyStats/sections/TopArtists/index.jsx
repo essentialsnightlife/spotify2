@@ -97,7 +97,7 @@ function TopArtists({ topArtists, periods, displayName, onChange }) {
       <MKBox
           position="relative"
           variant="gradient"
-          py={6}
+          py={{xs: 6, lg: 10}}
           mx={-2}
           mt={6}
           sx={{

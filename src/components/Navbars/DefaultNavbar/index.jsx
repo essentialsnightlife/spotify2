@@ -525,8 +525,7 @@ function DefaultNavbar({
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
           >
             <MKTypography
-              variant="button"
-              fontSize="large"
+              variant="h4"
               fontWeight="bold"
               color={light ? "white" : "dark"}
             >

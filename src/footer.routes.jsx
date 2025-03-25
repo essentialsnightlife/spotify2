@@ -88,16 +88,15 @@ export default {
     },
   ],
   copyright: (
-    <MKTypography color="primary" variant="button" fontWeight="regular">
+    <MKTypography color="primary" fontWeight="light">
       All rights reserved. Copyright &copy; {date} Spotify Stats by{" "}
       <MKTypography
         component="a"
         title="DJ Eds D1 Instagram"
+        fontWeight="regular"
         href="https://www.instagram.com/eds_d1/"
         target="_blank"
         rel="noreferrer"
-        variant="button"
-        fontWeight="regular"
         color="primary"
       >
         DJ Eds D1

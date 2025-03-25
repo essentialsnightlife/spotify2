@@ -89,7 +89,7 @@ function LoginPage({ onClick }) {
         light
       />
       <MKBox
-        minHeight="80vh"
+        minHeight="60vh"
         width="100%"
         sx={{
           backgroundImage: ({
@@ -128,9 +128,11 @@ function LoginPage({ onClick }) {
             >
               Welcome to Your Music Stats
             </MKTypography>
-            <MKTypography variant="body1" color="white" mt={2}>
-              Tell your musical stories with this free tool.
-              <br /> You can view your top artists and most played tracks on
+            <MKTypography variant="body1" color="white" mt={2} mb={1}>
+              Share your musical stories with this free tool.
+            </MKTypography>
+            <MKTypography variant="body1" color="white">
+              View your top artists and most played tracks on
               Spotify for different time ranges.
             </MKTypography>
             <Stack direction="row" spacing={1} mt={6} mb={3}>

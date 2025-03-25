@@ -35,7 +35,7 @@ function DefaultFooter({ content }) {
       <Container>
         <Grid container>
           <Grid item xs={12} sx={{ textAlign: "center", mb: 1 }}>
-            <MKTypography color="primary" variant="h6" sx={{ mb: 3 }}>
+            <MKTypography color="primary" sx={{ mb: 3, fontSize: { lg: "h2" } }}>
               {brand.name}
             </MKTypography>
             {socials.map(({ icon, link, title }, key) => (
@@ -46,7 +46,6 @@ function DefaultFooter({ content }) {
                 title={title}
                 target="_blank"
                 rel="noreferrer"
-                variant="h5"
                 color="primary"
                 opacity={0.8}
                 mr={key === socials.length - 1 ? 0 : 4}
@@ -59,7 +58,6 @@ function DefaultFooter({ content }) {
           <Grid
             item
             xs={12}
-            fontSize="small"
             sx={{ textAlign: "center", mb: 1 }}
           >
             <MKTypography color="primary" variant="body1">
@@ -81,7 +79,6 @@ function DefaultFooter({ content }) {
             >
               <MKTypography
                 component="h6"
-                variant="button"
                 fontWeight="bold"
                 textTransform="capitalize"
                 mb={1}
@@ -103,7 +100,7 @@ function DefaultFooter({ content }) {
                         href={href}
                         target="_blank"
                         rel="noreferrer"
-                        variant="button"
+                        variant="body2"
                         color="secondary"
                         fontWeight="regular"
                         textTransform="capitalize"
@@ -115,7 +112,7 @@ function DefaultFooter({ content }) {
                       <MKTypography
                         component={Link}
                         to={route}
-                        variant="button"
+                        variant="body2"
                         color="secondary"
                         fontWeight="regular"
                         textTransform="capitalize"
