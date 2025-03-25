@@ -1,8 +1,4 @@
-// LoadingPage.jsx
 import React, { useState, useEffect } from 'react';
-
-// You'll need to import your favicon image
-// import faviconImage from './path-to-your-favicon.png';
 
 const LoadingPage = ({ loadingText = "Loading your music stats..." }) => {
   const [progress, setProgress] = useState(0);
@@ -10,7 +6,7 @@ const LoadingPage = ({ loadingText = "Loading your music stats..." }) => {
 
   useEffect(() => {
     const calculateIcons = () => {
-      const iconSize = 96; // match minmax(80px, 1fr) + gap
+      const iconSize = 96;
       const cols = Math.ceil(window.innerWidth / iconSize);
       const rows = Math.ceil(window.innerHeight / iconSize);
       setIconCount(cols * rows);
@@ -21,7 +17,6 @@ const LoadingPage = ({ loadingText = "Loading your music stats..." }) => {
     return () => window.removeEventListener('resize', calculateIcons);
   }, []);
 
-  // Simulate loading progress
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -36,7 +31,6 @@ const LoadingPage = ({ loadingText = "Loading your music stats..." }) => {
     return () => clearInterval(interval);
   }, []);
 
-  // Inline styles for minimal dependencies
   const styles = {
     container: {
       position: 'relative',
@@ -81,7 +75,7 @@ const LoadingPage = ({ loadingText = "Loading your music stats..." }) => {
       objectFit: 'contain',
     },
     contentBox: {
-      position: 'fixed', // ✅ isolate it completely from grid
+      position: 'fixed',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
@@ -150,7 +144,6 @@ const LoadingPage = ({ loadingText = "Loading your music stats..." }) => {
     },
   };
 
-  // Add keyframes for animations
   useEffect(() => {
     const style = document.createElement('style');
     style.innerHTML = `
@@ -194,10 +187,8 @@ const LoadingPage = ({ loadingText = "Loading your music stats..." }) => {
         </div>
       </div>
 
-      {/* Center loading content */}
       <div style={styles.contentBox}>
         <img
-          // Replace with your favicon path
           src="/favicon.png"
           alt="Your Music Stats"
           style={{

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { fetchProfile, fetchUserTopItems } from "@/apis/spotify";
 import { SpotifyStats } from "@/components/Pages/SpotifyStatsPage/SpotifyStats";
+import LoadingPage from "components/Pages/LoadingPage/LoadingPage.jsx";
 import { FetchUserTopItemsParams, SpotifyItem, UserProfile } from "@/types";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -60,9 +61,7 @@ function SpotifyStatsPage() {
     if (isReady) fetchProfileData();
   }, [fetchProfileData, isReady]);
 
-  if (!isReady || loading) return <>Fetching your Spotify Stats...</>;
-
-  if (loading) return <>Fetching your Spotify Stats...</>;
+  if (!isReady || loading) return <LoadingPage />;
 
   return (
     <SpotifyStats

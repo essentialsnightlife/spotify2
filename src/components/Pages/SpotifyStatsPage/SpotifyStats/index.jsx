@@ -34,6 +34,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 import footerRoutes from "@/footer.routes";
 
 import { logout } from "../../../../utils";
+import LoadingPage from "components/Pages/LoadingPage/LoadingPage.jsx";
 
 const periods = [
   { queryParam: "short_term", label: "Short Term" },
@@ -81,7 +82,7 @@ export function SpotifyStats({
     return () => window.removeEventListener("resize", displayMobileNavbar);
   }, []);
 
-  if (loading) return <>Fetching your Spotify Stats...</>;
+  if (loading) return <LoadingPage />;
 
   return (
     <>
