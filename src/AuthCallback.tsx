@@ -1,8 +1,9 @@
-import {useEffect, useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { getAccessTokens } from "@/apis/spotify";
 import { setCookie } from "@/utils";
 import { useAuth } from "@/hooks/useAuth";
+import LoadingPage from "components/Pages/LoadingPage/LoadingPage";
 
 const AuthCallback = () => {
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ const AuthCallback = () => {
         handleAuth();
     }, [isAuthenticated, navigate, setToken]);
 
-    return <>Logging you in...</>;
+    return <LoadingPage loadingText="Logging you in"  />;
 };
 
 export default AuthCallback;

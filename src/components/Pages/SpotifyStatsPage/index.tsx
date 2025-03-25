@@ -61,7 +61,7 @@ function SpotifyStatsPage() {
     if (isReady) fetchProfileData();
   }, [fetchProfileData, isReady]);
 
-  if (!isReady || loading) return <LoadingPage />;
+  if (!isReady || loading) return <LoadingPage loadingText="Loading your music stats" />;
 
   return (
     <SpotifyStats
