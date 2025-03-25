@@ -82,7 +82,7 @@ function LoginPage({ onClick }) {
         action={{
           type: "external",
           onClick: () => onClick(),
-          label: "spotify connect",
+          label: "connect",
           color: "primary",
         }}
         transparent
