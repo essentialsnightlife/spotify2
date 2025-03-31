@@ -10,8 +10,6 @@ export const onShareButtonClick = async (type = "artists", displayName = "") => 
     shareDiv.setAttribute("display-name", displayName);
 
     try {
-        // Make div temporarily visible, off-screen
-        shareDiv.style.position = 'absolute';
         shareDiv.style.left = '-9999px';
         shareDiv.style.display = "block";
 
