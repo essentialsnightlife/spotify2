@@ -45,8 +45,8 @@ const TopArtistsCard = ({ spotifyItem, number }) => {
       .join(", ");
 
   return (
-    <Grid item xs={12} lg={6}>
-        <MKBox mb={1}>
+    <Grid item xs={12} lg={6} sx={{ display: "flex" }}>
+        <MKBox mb={1} sx={{ flex: 1, display: "flex" }}>
           <HorizontalTeamCard
             image={images[0]?.url}
             name={name}

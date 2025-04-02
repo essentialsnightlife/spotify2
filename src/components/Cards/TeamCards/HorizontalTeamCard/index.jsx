@@ -37,13 +37,13 @@ const SpotifyPlayButton = ({ href }) => {
       rel="noreferrer"
       variant="contained"
       color="primary"
-      size="large"
+      size="medium"
 
       sx={{
         mt: 2,
-        justifyContent: "flex-start",
-        paddingLeft: "8px",
-        paddingRight: "16px",
+        alignSelf: "flex-start",
+        px: 2,
+        minWidth: "auto",
         "&:hover": {
           backgroundColor: "#8B0000",
           color: "#5A5A5A",
@@ -58,49 +58,75 @@ const SpotifyPlayButton = ({ href }) => {
 
 function HorizontalTeamCard({ image, name, position, description, href }) {
   return (
-    <Card sx={{ mt: 3 }}>
-      <Grid container sx={{ height: { lg: "17rem" } }}>
-        <Grid item xs={12} md={6} lg={4} sx={{ mt: 0 }}>
-          <MKBox width="100%" pt={2} pb={1} px={2}>
-            <MKBox
-              component="img"
-              src={image || fallbackImage}
-              onError={(event) => {
-                event.currentTarget.src = fallbackImage;
-              }}
-              alt={name}
-              width="100%"
-              borderRadius="md"
-              shadow="lg"
-            />
-            <SpotifyAttribution
-              logoWidth="60%"
-              text=""
-              color="dark"
-              href={href}
-              textAlign="left"
-            />
-          </MKBox>
-        </Grid>
-        <Grid item xs={12} md={6} lg={8} sx={{ my: 2 }}>
-          <MKBox
+    <Card sx={{  mt: 3,
+      height: "100%", // 👈 forces card to fill parent's height
+      display: "flex",
+      flexDirection: { xs: "column", lg: "row" },
+        flex: 1, // 👈 if inside a flex or Grid item, this helps fill space
+      }}>
+      {/* Image & Attribution */}
+      <MKBox
+        sx={{
+          width: { xs: "100%", lg: "35%" },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          p: 2,
+          alignSelf: "stretch",
+        }}
+      >
+        <MKBox
+          component="img"
+          src={image || fallbackImage}
+          onError={(event) => {
+            event.currentTarget.src = fallbackImage;
+          }}
+          alt={name}
+          width="100%"
+          borderRadius="md"
+          shadow="lg"
+          sx={{
+            mb: 1,
+            objectFit: "cover",
+            alignSelf: "stretch",
+            width: "100%",
+            height: { xs: "auto", sm: "200px", lg: "160px" },
+            maxHeight: { xs: "none", lg: "160px" },
+            borderRadius: "md",
+          }}
+
+        />
+        <SpotifyAttribution
+          logoWidth="60%"
+          text=""
+          color="dark"
+          href={href}
+          textAlign="left"
+        />
+      </MKBox>
+
+      {/* Text content */}
+      <MKBox
             pt={{ xs: 1, lg: 2.5 }}
             pb={2.5}
             pr={4}
             pl={{ xs: 2.5, lg: 1 }}
             lineHeight={1}
-          >
-            <MKTypography variant="h5">{name}</MKTypography>
-            <MKTypography variant="h6" color={position.color} mb={1}>
-              {position.label}
-            </MKTypography>
-            <MKTypography variant="body2" color="text">
-              {description}
-            </MKTypography>
-            {href && <SpotifyPlayButton href={href} />}
-          </MKBox>
-        </Grid>
-      </Grid>
+      >
+        <MKTypography sx={{ fontSize: { xs: "h6", md: "h5" }, fontWeight: 800, mb: 0.5 }}>
+          {name}
+        </MKTypography>
+        <MKTypography
+          color={position.color}
+
+        >
+          {position.label}
+        </MKTypography>
+            <MKTypography color="text" sx={{ fontSize: { xs: "body2", md: "body1" }, fontWeight: { md: 400 }, mb: 1 }}>
+          {description}
+        </MKTypography>
+        {href && <SpotifyPlayButton href={href} />}
+      </MKBox>
     </Card>
   );
 }
