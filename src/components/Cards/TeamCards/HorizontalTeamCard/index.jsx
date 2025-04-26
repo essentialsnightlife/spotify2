@@ -59,19 +59,22 @@ const SpotifyPlayButton = ({ href }) => {
 function HorizontalTeamCard({ image, name, position, description, href }) {
   return (
     <Card sx={{  mt: 3,
-      height: "100%", // 👈 forces card to fill parent's height
+      height: "100%",
       display: "flex",
       flexDirection: { xs: "column", lg: "row" },
-        flex: 1, // 👈 if inside a flex or Grid item, this helps fill space
+        flex: 1,
       }}>
       {/* Image & Attribution */}
       <MKBox
         sx={{
-          width: { xs: "100%", lg: "35%" },
+          width: { xs: "100%", lg: "30%" },
+          minWidth: { lg: "30%" },
+          maxWidth: { lg: "30%" },
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          p: 2,
+          pl: 2,
+          pr: { xs: 2, lg: 0 },
+          pt: 2,
           alignSelf: "stretch",
         }}
       >
@@ -82,14 +85,14 @@ function HorizontalTeamCard({ image, name, position, description, href }) {
             event.currentTarget.src = fallbackImage;
           }}
           alt={name}
-          width="100%"
           borderRadius="md"
           shadow="lg"
           sx={{
             mb: 1,
-            objectFit: "cover",
+            objectFit: "scale-down",
             alignSelf: "stretch",
-            width: "100%",
+            minWidth: { xs: "100%", lg: "160px" },
+            maxWidth: { xs: "100%", lg: "160px" },
             height: { xs: "auto", sm: "200px", lg: "160px" },
             maxHeight: { xs: "none", lg: "160px" },
             borderRadius: "md",
@@ -110,7 +113,7 @@ function HorizontalTeamCard({ image, name, position, description, href }) {
             pt={{ xs: 1, lg: 2.5 }}
             pb={2.5}
             pr={4}
-            pl={{ xs: 2.5, lg: 1 }}
+            pl={{ xs: 2.5, lg: 5.5 }}
             lineHeight={1}
       >
         <MKTypography sx={{ fontSize: { xs: "h6", md: "h5" }, fontWeight: 800, mb: 0.5 }}>
