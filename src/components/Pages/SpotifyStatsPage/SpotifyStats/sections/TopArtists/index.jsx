@@ -236,7 +236,7 @@ function TopArtists({ topArtists, periods, displayName, onChange }) {
                           variant="gradient"
                           color="primary"
                           size="large"
-                          onClick={() => onShareButtonClick("artists", displayName)}
+                          onClick={() => onShareButtonClick("artists", displayName, (selectedPeriod || ""))}
                           aria-haspopup="true"
                           sx={{mt: 4}}
                       >

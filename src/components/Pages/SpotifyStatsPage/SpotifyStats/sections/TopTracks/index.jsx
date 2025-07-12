@@ -231,7 +231,7 @@ function TopTracks({ topTracks, periods, displayName, onChange }) {
                       variant="gradient"
                       color="primary"
                       size="large"
-                      onClick={() => onShareButtonClick("tracks", displayName)}
+                      onClick={() => onShareButtonClick("tracks", displayName, (selectedPeriod || ""))}
                       aria-haspopup="true"
                       sx={{mt: 4}}
                   >

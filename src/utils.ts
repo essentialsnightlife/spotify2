@@ -1,6 +1,6 @@
 import { domToPng } from 'modern-screenshot'
 
-export const onShareButtonClick = async (type = "artists", displayName = "") => {
+export const onShareButtonClick = async (type = "artists", displayName = "", period = "") => {
     const shareDiv = type === "artists"
         ? document.getElementById("shareTopArtists")
         : document.getElementById("shareTopTracks");
@@ -21,7 +21,7 @@ export const onShareButtonClick = async (type = "artists", displayName = "") => 
 
         // Create download link
         const formattedDisplayName = displayName.replace(/\s+/g, "-") || "";
-        const fileName = `${formattedDisplayName + "-" || ""}top-${type}-${new Date().toLocaleString("en-UK", {
+        const fileName = `${formattedDisplayName + "-" || ""}top-${type}-${period}-${new Date().toLocaleString("en-UK", {
             weekday: "short",
             month: "short",
             day: "numeric",
